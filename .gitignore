@@ -5,11 +5,15 @@ data/harmonized/*
 !data/raw/.gitkeep
 !data/harmonized/.gitkeep
 
-# Generated results and figures. Run the pipeline to populate.
-results/*
-figures/*.png
-!results/.gitkeep
-!figures/.gitkeep
+# Generated results and figures.
+#
+# The committed contents of results/ and figures/ are a REFERENCE RUN of the
+# full compendium (15 gate-passing cohorts, 1000 null draws, seed 20260705),
+# so a reviewer can inspect the tables and diff `make check` without waiting
+# on the pipeline. `make clean-results` removes them; re-running regenerates
+# them. Per-cohort score matrices are excluded -- they are large, and every
+# downstream table is derived from them.
+results/scores/
 
 # Signature library is assembled from upstream at build time.
 signatures/signatures.json

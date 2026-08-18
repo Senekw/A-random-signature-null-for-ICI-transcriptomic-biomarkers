@@ -66,8 +66,14 @@ def main() -> None:
                 p.n_responder.sum() / p.n_response_labeled.sum()
                 if p.n_response_labeled.sum() else None
             ),
-            "cancer_types": sorted({t for v in p.cancer_type
-                                    for t in str(v).split("|") if t}),
+            "cancer_types": sorted({
+                t for v in (p.primary_cancer_type
+                            if "primary_cancer_type" in p
+                            and p.primary_cancer_type.notna().all()
+                            else p.cancer_type).astype(str)
+                for t in v.split("|") if t and t != "nan"}),
+            "biopsy_site_labels": sorted({t for v in p.cancer_type
+                                          for t in str(v).split("|") if t}),
             "treatment_classes": sorted({t for v in p.treatment
                                          for t in str(v).split("|") if t}),
         }

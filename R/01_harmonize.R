@@ -135,7 +135,20 @@ for (f in files) {
     n_response_labeled = n_lab, n_responder = n_r, n_nonresponder = n_nr,
     minority_class = min(n_r, n_nr),
     n_with_os = n_os,
+    # Two fields, because they answer different questions. `cancer_type` is
+    # every distinct value in the cohort's clinical table; but in some
+    # cohorts that column records the BIOPSY SITE rather than the primary
+    # tumour (ICB_Mariathasan is urothelial carcinoma with samples labelled
+    # Bladder / Kidney / Liver / Lymph_node / Ureteral / Unknown). Counting
+    # those as distinct cancer types would overstate the compendium's
+    # disease coverage, so `primary_cancer_type` is the cohort's modal
+    # value and is what the cancer-type count is computed from.
     cancer_type = paste(sort(unique(na.omit(clin$cancer_type))), collapse = "|"),
+    primary_cancer_type = {
+      ct <- na.omit(as.character(clin$cancer_type))
+      if (!length(ct)) NA_character_ else names(sort(table(ct),
+                                                     decreasing = TRUE))[1]
+    },
     treatment   = paste(sort(unique(na.omit(clin$treatment))),   collapse = "|"),
     stringsAsFactors = FALSE
   )

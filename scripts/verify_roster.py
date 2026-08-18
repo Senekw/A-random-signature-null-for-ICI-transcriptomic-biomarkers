@@ -20,6 +20,8 @@ Usage:  python scripts/verify_roster.py
 from __future__ import annotations
 
 import re
+import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -27,6 +29,12 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+# The R interpreter used for the two steps that read IOBR's .rda objects.
+# Overridable because a conda/renv R is commonly not the one on PATH:
+#   RSCRIPT=/path/to/Rscript python scripts/01_build_signatures.py
+RSCRIPT = os.environ.get("RSCRIPT") or shutil.which("Rscript") or "Rscript"
+
 ROSTER = ROOT / "config" / "signature_roster_iobr.txt"
 CANON = ROOT / "config" / "canonical_signatures.yaml"
 
@@ -80,7 +88,7 @@ def main() -> None:
         rs.write_text(R_SCRIPT)
         try:
             out = subprocess.run(
-                ["Rscript", str(rs), str(td / "signature_collection.rda"),
+                [RSCRIPT, str(rs), str(td / "signature_collection.rda"),
                  str(td / "sig_group.rda"), *groups],
                 capture_output=True, text=True, check=True,
             ).stdout

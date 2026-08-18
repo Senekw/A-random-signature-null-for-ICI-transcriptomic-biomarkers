@@ -31,8 +31,18 @@ API      <- "https://www.orcestra.ca/api/clinical_icb/canonical"
 
 dir.create(RAW_DIR, recursive = TRUE, showWarnings = FALSE)
 
+# R's default download timeout is 60s, which truncates the larger cohort
+# objects (several are 40-90 MB) on an ordinary connection: download.file
+# then reports "downloaded length != reported length" and leaves a partial
+# file behind. 3600s is generous rather than tuned -- the transfer is
+# bandwidth-bound, and a timeout here costs a whole re-download.
+OLD_TIMEOUT <- getOption("timeout")
+options(timeout = max(3600, OLD_TIMEOUT))
+on.exit(options(timeout = OLD_TIMEOUT), add = TRUE)
+
 args    <- commandArgs(trailingOnly = TRUE)
 refresh <- "--refresh-manifest" %in% args
+RETRIES <- 3L
 
 # ---- manifest -------------------------------------------------------------
 # The committed manifest is the version the published analysis used. Use
@@ -67,8 +77,12 @@ for (e in man) {
   # an interrupted download leaves a large partial file that a later run
   # would otherwise accept, and the failure would surface much later as a
   # corrupt object in step 01.
-  have <- file.exists(dest) && file.size(dest) > 1e6 &&
-    !inherits(try(readRDS(dest), silent = TRUE), "try-error")
+  # Validity is "the object loads", never a size threshold. The compendium
+  # spans three orders of magnitude -- the smallest cohorts are well under
+  # 1 MB (ICB_Hwang is ~84 KB) while the largest exceed 100 MB -- so any
+  # fixed minimum-size guard rejects real cohorts.
+  have <- file.exists(dest) &&
+    !inherits(try(suppressWarnings(readRDS(dest)), silent = TRUE), "try-error")
 
   if (have) {
     message(sprintf("  [have] %-20s %6.0f MB", e$name,
@@ -82,17 +96,36 @@ for (e in man) {
     # object loads, so an interrupted run never leaves a file that looks
     # complete.
     tmp <- paste0(dest, ".part")
-    ok <- tryCatch({
-      download.file(e$download_url, tmp, mode = "wb", quiet = TRUE)
-      if (!file.exists(tmp) || file.size(tmp) < 1e6)
-        stop("downloaded file is missing or implausibly small")
-      if (inherits(try(readRDS(tmp), silent = TRUE), "try-error"))
-        stop("downloaded file is not a readable .rds object")
-      TRUE
-    }, error = function(err) {
-      message("        FAILED: ", conditionMessage(err))
-      FALSE
-    })
+    ok <- FALSE
+    for (attempt in seq_len(RETRIES)) {
+      unlink(tmp)
+      ok <- tryCatch({
+        # withCallingHandlers so a truncation *warning* becomes a failure:
+        # download.file warns rather than errors on a short read, and a
+        # silently truncated cohort is worse than a failed one.
+        withCallingHandlers(
+          download.file(e$download_url, tmp, mode = "wb", quiet = TRUE),
+          warning = function(w) {
+            if (grepl("downloaded length", conditionMessage(w)))
+              stop("truncated transfer: ", conditionMessage(w))
+            invokeRestart("muffleWarning")
+          }
+        )
+        if (!file.exists(tmp) || file.size(tmp) == 0)
+          stop("downloaded file is missing or empty")
+        obj <- try(suppressWarnings(readRDS(tmp)), silent = TRUE)
+        if (inherits(obj, "try-error"))
+          stop("downloaded file is not a readable .rds object")
+        rm(obj)
+        TRUE
+      }, error = function(err) {
+        message(sprintf("        attempt %d/%d failed: %s", attempt, RETRIES,
+                        conditionMessage(err)))
+        FALSE
+      })
+      if (ok) break
+      if (attempt < RETRIES) Sys.sleep(5 * attempt)
+    }
 
     if (!ok) {
       unlink(tmp)

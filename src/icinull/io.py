@@ -82,10 +82,25 @@ class Cohort:
 
     @property
     def cancer_type(self) -> str:
+        """Every distinct ``cancer_type`` value in the cohort, "|"-joined.
+
+        Note that in some cohorts this column records the biopsy site
+        rather than the primary tumour, so this is a superset of the
+        cohort's disease. Use :attr:`primary_cancer_type` when counting
+        cancer types.
+        """
         if "cancer_type" not in self.clin.columns:
             return ""
         v = sorted({str(x) for x in self.clin["cancer_type"].dropna()})
         return "|".join(v)
+
+    @property
+    def primary_cancer_type(self) -> str:
+        """The cohort's modal ``cancer_type`` — its primary tumour type."""
+        if "cancer_type" not in self.clin.columns:
+            return ""
+        v = self.clin["cancer_type"].dropna().astype(str)
+        return str(v.mode().iloc[0]) if len(v) else ""
 
     @property
     def treatment(self) -> str:

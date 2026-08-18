@@ -88,11 +88,18 @@ def figure1() -> None:
     ax.legend(frameon=False, loc="lower right")
     ax.margins(x=0.08)
 
-    types = sorted({t for v in p.cancer_type for t in str(v).split("|") if t})
+    # Primary tumour type per cohort, not per-sample biopsy site (see the
+    # note in R/01_harmonize.R): Mariathasan is urothelial carcinoma whose
+    # clinical column records where each biopsy was taken.
+    ctcol = ("primary_cancer_type"
+             if "primary_cancer_type" in p and p.primary_cancer_type.notna().all()
+             else "cancer_type")
+    types = sorted({t for v in p[ctcol].astype(str)
+                    for t in v.split("|") if t and t != "nan"})
     cmap = dict(zip(types, plt.cm.tab10.colors))
     ax = axes[1]
     for i, (_, r) in enumerate(p.iterrows()):
-        t = str(r.cancer_type).split("|")[0]
+        t = str(r[ctcol]).split("|")[0]
         ax.scatter(r.responder_rate, i, s=42, color=cmap.get(t, GREY),
                    edgecolor="white", linewidth=0.6, zorder=3)
     pooled = p.n_responder.sum() / p.n_response_labeled.sum()

@@ -1,0 +1,170 @@
+{
+  "provenance": {
+    "cohorts": "results/cohort_gate.csv",
+    "performance": "results/perf_per_sig_cohort.csv",
+    "null_calibration": "results/null_results.csv",
+    "single_axis.mean_z": "results/axis_pca_mean_z.csv, results/venet_alignment_mean_z.csv",
+    "single_axis.ssgsea": "results/axis_pca_ssgsea.csv, results/venet_alignment_ssgsea.csv",
+    "confound": "results/partialled_auroc_mean_z.csv, results/estimate_scores.csv",
+    "meta_analysis": "results/meta_results.csv",
+    "ceiling": "results/ceiling_loco.csv"
+  },
+  "cohorts": {
+    "n_evaluated": 21,
+    "n_passing_gate": 15,
+    "n_excluded": 6,
+    "exclusions": {
+      "Jerby_Arnon": "G3",
+      "Padron": "G2",
+      "Snyder": "G1",
+      "Hwang": "G1;G2;G3",
+      "Roh": "G1;G2;G3",
+      "Shiuan": "G1"
+    },
+    "n_samples": 1121,
+    "n_response_labeled": 905,
+    "n_with_os": 862,
+    "pooled_responder_rate": 0.331492,
+    "cancer_types": [
+      "Bladder",
+      "Esophageal",
+      "Gastric",
+      "Kidney",
+      "Lung",
+      "Melanoma"
+    ],
+    "biopsy_site_labels": [
+      "Bladder",
+      "Esophageal",
+      "Gastric",
+      "Kidney",
+      "Liver",
+      "Lung",
+      "Lymph_node",
+      "Melanoma",
+      "Unknown",
+      "Ureteral"
+    ],
+    "treatment_classes": [
+      "CTLA4",
+      "Combo",
+      "PD-1/PD-L1",
+      "anti-PD-1",
+      "anti-PD-1/anti-PD-L1"
+    ],
+    "n_cancer_types": 6,
+    "n_treatment_classes": 5
+  },
+  "performance": {
+    "n_signatures": 102,
+    "n_tests_mean_z": 1396,
+    "mean_auroc": 0.539616,
+    "median_auroc": 0.540445,
+    "frac_tests_below_0.55": 0.533668,
+    "median_gene_coverage": 1.0,
+    "best_signatures_mean_auroc": {
+      "CD_8_T_effector": 0.646779,
+      "T_cell_inflamed_GEP_Ayers_et_al": 0.642745,
+      "IFNG_6gene_Ayers": 0.638514,
+      "TLS_12chemokine_Prabhakaran": 0.633826,
+      "Chemokine12_Messina": 0.633826,
+      "Cytolytic_Activity_Rooney_et_al": 0.633368,
+      "CD8_Rooney_et_al": 0.632927,
+      "Co_inhibition_T_cell_Rooney_et_al": 0.630988,
+      "Roh_immune": 0.630866,
+      "MHC_Class_I_Rooney_et_al": 0.629808
+    },
+    "scoring_method_pearson_r": 0.942369,
+    "scoring_method_spearman_rho": 0.940074
+  },
+  "null_calibration": {
+    "n_signature_cohort_tests": 1396,
+    "n_draws_per_test": 1000,
+    "seed": 20260714,
+    "frac_beating_null_p05": 0.270774,
+    "frac_canonical_beating_null": 0.563492,
+    "median_observed_auroc": 0.540425,
+    "median_null_q95": 0.617867,
+    "mean_observed_auroc": 0.539855,
+    "mean_null_auroc": 0.497026,
+    "mean_advantage_over_null": 0.042829,
+    "null_beating_rate_by_cohort": {
+      "Nathanson": 0.030612,
+      "Miao1": 0.080808,
+      "Braun": 0.131313,
+      "Hugo": 0.153061,
+      "Limagne2": 0.153061,
+      "Limagne1": 0.163265,
+      "Van_Allen": 0.20202,
+      "VanDenEnde": 0.25,
+      "Puch": 0.272727,
+      "Mariathasan": 0.336735,
+      "Kim": 0.397959,
+      "Riaz": 0.418367,
+      "Jung": 0.469388,
+      "Liu": 0.469388,
+      "Gide": 0.520408
+    },
+    "null_beating_range": [
+      0.030612,
+      0.520408
+    ],
+    "n_signatures_fdr05_positive": 54,
+    "n_signatures_pooled": 99
+  },
+  "single_axis": {
+    "mean_z": {
+      "pc1_var_explained_mean": 0.562539,
+      "pc1_var_explained_max": 0.765252,
+      "pc1_corr_gep_mean": 0.828567,
+      "venet_r": 0.823571,
+      "venet_r2": 0.678269,
+      "venet_p": 1.27e-25,
+      "venet_n_signatures": 99
+    },
+    "ssgsea": {
+      "pc1_var_explained_mean": 0.428207,
+      "pc1_var_explained_max": 0.606214,
+      "pc1_corr_gep_mean": 0.873912,
+      "venet_r": 0.9406,
+      "venet_r2": 0.884729,
+      "venet_p": 2.67e-47,
+      "venet_n_signatures": 99
+    }
+  },
+  "confound": {
+    "axis_corr_estimate_immune_mean": 0.622287,
+    "axis_corr_tumor_purity_mean": -0.631413,
+    "mean_auroc_raw": 0.539141,
+    "mean_auroc_after_removing_infiltration": 0.510916,
+    "best10_mean_auroc": 0.635365
+  },
+  "meta_analysis": {
+    "n_meta_analyzable": 97,
+    "best_signature": "IFNG_6gene_Ayers",
+    "best_pooled_auroc": 0.626776,
+    "best_ci": [
+      0.549819,
+      0.697808
+    ],
+    "n_ci_excluding_0.5": 29,
+    "median_I2": 16.129576,
+    "median_tau2": 0.021836
+  },
+  "ceiling": {
+    "loco_auroc": {
+      "gep_axis": 0.601816,
+      "estimate_immune": 0.58731,
+      "full_panel_plus_infiltration": 0.581849,
+      "full_panel": 0.570157,
+      "random_panel": 0.489465
+    },
+    "gep_axis_ci": [
+      0.555091,
+      0.669839
+    ],
+    "in_cohort_best_selected": 0.763321,
+    "within_cohort_cv_panel": 0.61843,
+    "optimism_gap": 0.161504
+  }
+}

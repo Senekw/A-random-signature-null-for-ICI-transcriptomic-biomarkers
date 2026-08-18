@@ -31,12 +31,27 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def dig(obj, dotted: str):
-    """Fetch a dotted path out of nested dicts; None if any hop is absent."""
+    """Fetch a dotted path out of nested dicts; None if any hop is absent.
+
+    Some leaf keys contain a literal dot (``frac_tests_below_0.55``,
+    ``n_ci_excluding_0.5``), so a naive split on "." never finds them. At
+    each level, prefer the longest key that matches the remaining path.
+    """
     cur = obj
-    for part in dotted.split("."):
-        if not isinstance(cur, dict) or part not in cur:
+    rest = dotted
+    while rest:
+        if not isinstance(cur, dict):
             return None
-        cur = cur[part]
+        if rest in cur:                    # whole remainder is a leaf key
+            return cur[rest]
+        hop = None
+        for key in cur:                    # longest matching prefix key
+            if rest.startswith(key + ".") and (hop is None or len(key) > len(hop)):
+                hop = key
+        if hop is None:
+            return None
+        cur = cur[hop]
+        rest = rest[len(hop) + 1:]
     return cur
 
 

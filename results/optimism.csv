@@ -1,0 +1,5 @@
+quantity,auroc,optimism_gap_vs_transferable
+best_signature_selected_in_cohort,0.7633205794373276,0.16150434012108827
+within_cohort_cv_panel,0.6184297594314795,0.0166135201152402
+transferable_ceiling_gep_axis,0.6018162393162393,0.0
+transferable_full_panel,0.5701566951566952,-0.031659544159544084

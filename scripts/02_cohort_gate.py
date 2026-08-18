@@ -72,6 +72,7 @@ def main() -> None:
             "n_expressed_genes": n_genes,
             "n_with_os": n_os,
             "cancer_type": c.cancer_type,
+            "primary_cancer_type": getattr(c, "primary_cancer_type", ""),
             "treatment": c.treatment,
             "G1_min_labeled": g1,
             "G2_min_minority": g2,
@@ -96,7 +97,14 @@ def main() -> None:
     if len(passed):
         pooled = passed.n_responder.sum() / passed.n_response_labeled.sum()
         print(f"pooled responder rate: {pooled:.3f}")
-        types = sorted({t for v in passed.cancer_type for t in v.split("|") if t})
+        # Count primary tumour types, not per-sample biopsy sites (see the
+        # note in R/01_harmonize.R).
+        col = ("primary_cancer_type"
+               if "primary_cancer_type" in passed
+               and passed.primary_cancer_type.notna().all()
+               else "cancer_type")
+        types = sorted({t for v in passed[col].astype(str)
+                        for t in v.split("|") if t and t != "nan"})
         print(f"cancer types       : {len(types)} ({', '.join(types)})")
 
     excl = gate_df[~gate_df.passes_gate]

@@ -123,10 +123,29 @@ response, −1 = higher predicts resistance) from the source publication,
 and applied as a sign on the score. Direction is **never** chosen to
 maximize AUROC — that would guarantee AUROC ≥ 0.5 and destroy the test.
 
-**Coverage guard**: a signature × cohort test requires ≥ 50% of the
-signature's genes present, and ≥ 3 genes (single-gene markers excepted).
-Failing combinations are written to `results/perf_per_sig_cohort.csv` with
-`excluded_reason`, not silently dropped.
+**Coverage guard**: a signature × cohort test requires at least
+`scoring.min_genes_covered` of the signature's genes to be present in that
+cohort's matrix — currently **2**. Failing combinations are written to
+`results/perf_per_sig_cohort.csv` with `excluded_reason`, not silently
+dropped, and each row carries `n_genes_published`, `n_genes_covered` and
+`coverage` so the guard's effect is auditable rather than implicit.
+
+The threshold sets the denominator of the headline "N of M tests beat the
+null" claim, so it is worth stating what it excludes and what a different
+choice would do. On the 15 passing cohorts (a 15 × 102 = 1,530 grid):
+
+| rule | evaluable mean-z tests |
+|------|------------------------|
+| ≥ 1 gene covered | 1,462 |
+| **≥ 2 genes covered (pre-specified)** | **1,396** |
+| ≥ 3 genes, single-gene markers excepted | 1,424 |
+
+Nearly all of the difference is one cohort: `ICB_VanDenEnde`'s sparse assay
+contributes 58 signatures with zero genes covered and 82 excluded tests in
+total (see §2). A one-gene "signature" is a single-gene marker whether or
+not it was published as a set, which is why the floor is 2 rather than 1 —
+but the choice is a choice, and a reader who prefers ≥ 1 can recompute the
+denominator from the committed table without re-running anything.
 
 ---
 

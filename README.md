@@ -87,7 +87,7 @@ pip install -e .
 # R 4.4 with Bioconductor
 Rscript env/install_r_deps.R
 
-# 1. fetch cohorts (~15 GB). Re-run until it reports 0 failures; it skips
+# 1. fetch cohorts (~0.9 GB). Re-run until it reports 0 failures; it skips
 #    what is already present and exits non-zero while any are missing.
 make download
 

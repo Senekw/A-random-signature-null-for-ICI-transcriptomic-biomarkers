@@ -28,6 +28,8 @@ from __future__ import annotations
 import argparse
 import io
 import json
+import os
+import shutil
 import subprocess
 import sys
 import urllib.request
@@ -37,6 +39,12 @@ import pandas as pd
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
+
+# The R interpreter used for the two steps that read IOBR's .rda objects.
+# Overridable because a conda/renv R is commonly not the one on PATH:
+#   RSCRIPT=/path/to/Rscript python scripts/01_build_signatures.py
+RSCRIPT = os.environ.get("RSCRIPT") or shutil.which("Rscript") or "Rscript"
+
 sys.path.insert(0, str(ROOT / "src"))
 
 from icinull.io import fetch_text  # noqa: E402
@@ -148,7 +156,7 @@ def build_iobr(offline: bool) -> tuple[dict, list]:
             f'cat(jsonlite::toJSON(sc, auto_unbox = FALSE), '
             f'file = "{payload.as_posix()}")'
         )
-        subprocess.run(["Rscript", "-e", r_code], check=True,
+        subprocess.run([RSCRIPT, "-e", r_code], check=True,
                        capture_output=True, text=True)
 
     coll = json.loads(payload.read_text())

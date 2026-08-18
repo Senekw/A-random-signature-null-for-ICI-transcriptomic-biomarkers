@@ -16,7 +16,7 @@ JOBS    ?= 4
 all: download harmonize signatures gate score null axis ceiling meta \
      headline figures check
 
-download:                       ## fetch ICB cohorts from ORCESTRA (~15 GB)
+download:                       ## fetch ICB cohorts from ORCESTRA (~0.9 GB)
 	$(RSCRIPT) R/00_download_cohorts.R
 
 harmonize:                      ## MAE -> flat expression + clinical tables
