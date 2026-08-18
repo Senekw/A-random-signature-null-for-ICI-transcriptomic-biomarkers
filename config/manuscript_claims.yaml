@@ -1,0 +1,243 @@
+# Every number the submitted manuscript quotes, with the path in
+# results/headline_numbers.json that regenerates it.
+#
+# `published` is transcribed from the submitted manuscript text (the source
+# line is named in `note` where the value is not in the Abstract).
+# `tolerance` is the absolute deviation at which the regenerated value stops
+# supporting the published claim. It is per-claim on purpose:
+#
+#   * Monte-Carlo quantities (empirical null rates) carry ~1/sqrt(n_draws)
+#     error, so they get a wider band than deterministic AUROCs.
+#   * Values the paper quotes to two significant figures are held to that
+#     precision, not to three.
+#   * A tolerance is NOT a licence to accept drift. Anything flagged MOVED
+#     changes a sentence in the paper and must be reconciled.
+#
+# Checked by: python scripts/10_check_manuscript.py
+
+claims:
+  # ---- cohort composition (deterministic: should match exactly) ----
+  - claim: cohorts passing gate
+    path: cohorts.n_passing_gate
+    published: 15
+    tolerance: 0
+    note: "Methods/Figure 1. Deterministic given the manifest and gate."
+
+  - claim: response-labeled patients
+    path: cohorts.n_response_labeled
+    published: 905
+    tolerance: 0
+    note: "Abstract. Deterministic."
+
+  - claim: patients with OS
+    path: cohorts.n_with_os
+    published: 862
+    tolerance: 0
+
+  - claim: cancer types
+    path: cohorts.n_cancer_types
+    published: 6
+    tolerance: 0
+    note: "Abstract: 6 cancer types."
+
+  # ---- per-signature performance ----
+  - claim: signatures in library
+    path: performance.n_signatures
+    published: 102
+    tolerance: 0
+
+  - claim: signature x cohort tests
+    path: null_calibration.n_signature_cohort_tests
+    published: 1463
+    tolerance: 0
+    note: "Abstract. Depends on gene-coverage guard; a shift means the
+      coverage rule or a cohort's gene annotation differs."
+
+  - claim: median signature AUROC
+    path: performance.median_auroc
+    published: 0.548
+    tolerance: 0.010
+    note: "Abstract. Deterministic; tolerance covers float/version drift only."
+
+  - claim: mean signature AUROC
+    path: performance.mean_auroc
+    published: 0.549
+    tolerance: 0.010
+    note: "Results line 86: mean across signatures and cohorts 0.549."
+
+  - claim: frac tests below AUROC 0.55
+    path: performance.frac_tests_below_0.55
+    published: 0.51
+    tolerance: 0.020
+    note: "Results line 86: 51% of tests fell below 0.55."
+
+  - claim: scoring-method Pearson r
+    path: performance.scoring_method_pearson_r
+    published: 0.94
+    tolerance: 0.030
+    note: "Abstract and Figure 8A."
+
+  - claim: scoring-method Spearman rho
+    path: performance.scoring_method_spearman_rho
+    published: 0.93
+    tolerance: 0.030
+    note: "Results line 173."
+
+  # ---- the random-signature null (Monte-Carlo: wider bands) ----
+  - claim: frac tests beating null
+    path: null_calibration.frac_beating_null_p05
+    published: 0.305
+    tolerance: 0.025
+    note: "Abstract. 1000 draws -> MC error ~0.015 on a per-test p; the
+      aggregate over 1463 tests is tighter, but seed and draw count both
+      move it. A shift beyond 0.025 is not Monte-Carlo noise."
+
+  - claim: canonical predictors beating null
+    path: null_calibration.frac_canonical_beating_null
+    published: 0.445
+    tolerance: 0.040
+    note: "Abstract. Only 12 signatures x cohorts, so noisier."
+
+  - claim: median null 95th percentile
+    path: null_calibration.median_null_q95
+    published: 0.621
+    tolerance: 0.015
+
+  - claim: median observed AUROC (null table)
+    path: null_calibration.median_observed_auroc
+    published: 0.548
+    tolerance: 0.010
+
+  # ---- single-axis collapse ----
+  - claim: PC1 variance explained (mean)
+    path: single_axis.mean_z.pc1_var_explained_mean
+    published: 0.55
+    tolerance: 0.030
+    note: "Abstract and Figure 4A: mean 55% per cohort."
+
+  - claim: PC1 variance explained (max)
+    path: single_axis.mean_z.pc1_var_explained_max
+    published: 0.76
+    tolerance: 0.040
+    note: "Results line 111: up to 76%."
+
+  - claim: corr(PC1, T-cell-inflamed GEP)
+    path: single_axis.mean_z.pc1_corr_gep_mean
+    published: 0.79
+    tolerance: 0.030
+
+  - claim: Venet R-squared
+    path: single_axis.mean_z.venet_r2
+    published: 0.63
+    tolerance: 0.040
+    note: "Abstract and Figure 4C."
+
+  - claim: Venet Pearson r
+    path: single_axis.mean_z.venet_r
+    published: 0.79
+    tolerance: 0.030
+    note: "Results line 117."
+
+  - claim: Venet R-squared under ssGSEA
+    path: single_axis.ssgsea.venet_r2
+    published: 0.81
+    tolerance: 0.050
+    note: "Results line 173: collapse stronger under ssGSEA."
+
+  # ---- infiltration / purity confound ----
+  - claim: corr(axis, ESTIMATE immune)
+    path: confound.axis_corr_estimate_immune_mean
+    published: 0.63
+    tolerance: 0.040
+
+  - claim: corr(axis, tumor purity)
+    path: confound.axis_corr_tumor_purity_mean
+    published: -0.68
+    tolerance: 0.040
+
+  - claim: mean AUROC after removing infiltration
+    path: confound.mean_auroc_after_removing_infiltration
+    published: 0.503
+    tolerance: 0.015
+    note: "Results line 133: collapsed to chance. This is a load-bearing
+      claim -- if it lands materially above 0.51 the 'operationally
+      infiltration detectors' sentence weakens."
+
+  - claim: best-10 mean AUROC
+    path: confound.best10_mean_auroc
+    published: 0.640
+    tolerance: 0.015
+    note: "Results line 132."
+
+  # ---- meta-analysis ----
+  - claim: signatures meta-analyzable
+    path: meta_analysis.n_meta_analyzable
+    published: 100
+    tolerance: 0
+    note: "Results line 147: 32 of 100 meta-analyzable."
+
+  - claim: pooled CIs excluding 0.5
+    path: meta_analysis.n_ci_excluding_0.5
+    published: 32
+    tolerance: 1
+    note: "Results line 147. Tolerance 1 for boundary CIs."
+
+  - claim: best pooled AUROC
+    path: meta_analysis.best_pooled_auroc
+    published: 0.628
+    tolerance: 0.015
+    note: "Results line 147: T-cell-inflamed profile, 95% CI 0.563-0.689."
+
+  - claim: median I-squared (percent)
+    path: meta_analysis.median_I2
+    published: 15
+    tolerance: 6
+    note: "Results line 150: median I2 approx 15%."
+
+  # ---- transferable ceiling ----
+  - claim: LOCO ceiling, GEP axis
+    path: ceiling.loco_auroc.gep_axis
+    published: 0.594
+    tolerance: 0.015
+    note: "Abstract and Figure 7A. The headline ceiling."
+
+  - claim: LOCO, ESTIMATE immune
+    path: ceiling.loco_auroc.estimate_immune
+    published: 0.556
+    tolerance: 0.015
+    note: "Results line 158."
+
+  - claim: LOCO, full 102-signature panel
+    path: ceiling.loco_auroc.full_panel
+    published: 0.553
+    tolerance: 0.015
+    note: "Abstract. Must come out BELOW the axis for the 'not improved by
+      a trained panel' claim to hold."
+
+  - claim: LOCO, panel + infiltration
+    path: ceiling.loco_auroc.full_panel_plus_infiltration
+    published: 0.550
+    tolerance: 0.015
+
+  - claim: LOCO, random gene-set panel
+    path: ceiling.loco_auroc.random_panel
+    published: 0.441
+    tolerance: 0.025
+    note: "Results line 159: collapses out of cohort. Random draw, so wider."
+
+  - claim: in-cohort best-selected signature
+    path: ceiling.in_cohort_best_selected
+    published: 0.760
+    tolerance: 0.015
+
+  - claim: within-cohort CV panel
+    path: ceiling.within_cohort_cv_panel
+    published: 0.624
+    tolerance: 0.020
+    note: "Figure 7B caption."
+
+  - claim: optimism gap
+    path: ceiling.optimism_gap
+    published: 0.17
+    tolerance: 0.020
+    note: "Abstract: 0.760 - 0.594. Derived, so it moves if either does."

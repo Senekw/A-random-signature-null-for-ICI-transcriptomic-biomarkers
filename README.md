@@ -55,11 +55,25 @@ matters.
 | 07 | `R/07_meta_analysis.R` | `results/meta_results.csv`, `meta_loco.csv`, forest plots |
 | 08 | `scripts/08_headline_numbers.py` | `results/headline_numbers.json` |
 | 09 | `scripts/09_figures.py` | `figures/figure*.png` |
+| 10 | `scripts/10_check_manuscript.py` | reconciliation report vs the paper |
 
 Every number quoted in the manuscript is regenerated into
 `results/headline_numbers.json`, each entry tagged with the CSV and column
 it came from. Figures read only those committed CSVs, so a figure cannot
 disagree with a table.
+
+Step 10 closes the loop: `config/manuscript_claims.yaml` lists all 37
+numbers the paper quotes, each with its path in `headline_numbers.json` and
+a per-claim tolerance, and `make check` reports any that have moved beyond
+it. "Does this repository reproduce the paper" therefore has a mechanical
+answer — `make check` exits non-zero if it does not.
+
+**Cohort count matters for the ceiling.** Steps 02–05 and 07 are
+per-signature or per-cohort and behave sensibly on any subset. Step 06
+(leave-one-cohort-out) does not: with fewer than three cohorts each fold
+trains on one cohort, and the trained-panel rows are fold noise that can
+fall below chance and order arbitrarily. The script warns when this
+applies. Do not read a directional ceiling result off a subset run.
 
 ---
 
@@ -73,11 +87,15 @@ pip install -e .
 # R 4.4 with Bioconductor
 Rscript env/install_r_deps.R
 
-# whole pipeline (downloads ~15 GB of cohort objects on first run)
-make all
+# 1. fetch cohorts (~15 GB). Re-run until it reports 0 failures; it skips
+#    what is already present and exits non-zero while any are missing.
+make download
 
-# or step by step
-make download harmonize signatures gate score null axis ceiling meta headline figures
+# 2. fast end-to-end check (100 draws) before committing to the full run
+make smoke
+
+# 3. the real thing, ending in a reconciliation report against the paper
+make all
 ```
 
 `make test` runs the unit tests (29 tests, no download required — they

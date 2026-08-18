@@ -20,7 +20,10 @@ suppressPackageStartupMessages({
   library(metafor)
 })
 
-ROOT <- "."
+source(file.path(dirname(sub("^--file=", "",
+  c(grep("^--file=", commandArgs(FALSE), value = TRUE), "./R/x")[1])),
+  "_root.R"))
+ROOT <- repo_root()
 RES  <- file.path(ROOT, "results")
 FIG  <- file.path(ROOT, "figures")
 dir.create(FIG, recursive = TRUE, showWarnings = FALSE)

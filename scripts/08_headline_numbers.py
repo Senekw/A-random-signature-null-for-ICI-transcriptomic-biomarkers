@@ -71,6 +71,10 @@ def main() -> None:
             "treatment_classes": sorted({t for v in p.treatment
                                          for t in str(v).split("|") if t}),
         }
+        out["cohorts"]["n_cancer_types"] = len(out["cohorts"]["cancer_types"])
+        out["cohorts"]["n_treatment_classes"] = len(
+            out["cohorts"]["treatment_classes"]
+        )
         out["provenance"]["cohorts"] = "results/cohort_gate.csv"
 
     # ---- per-signature performance ----------------------------------------

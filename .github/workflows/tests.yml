@@ -33,6 +33,20 @@ jobs:
       - name: Run tests
         run: pytest tests/ -q
 
+      - name: Check the manuscript-claims registry is well-formed
+        run: |
+          python - <<'PY'
+          import yaml, json, pathlib
+          claims = yaml.safe_load(
+              pathlib.Path("config/manuscript_claims.yaml").read_text())["claims"]
+          paths = [c["path"] for c in claims]
+          assert len(paths) == len(set(paths)), "duplicate claim paths"
+          for c in claims:
+              assert {"claim", "path", "published", "tolerance"} <= set(c), c
+              assert float(c["tolerance"]) >= 0
+          print(f"{len(claims)} manuscript claims registered")
+          PY
+
       - name: Check pipeline scripts are importable and self-documenting
         run: |
           for f in scripts/*.py; do

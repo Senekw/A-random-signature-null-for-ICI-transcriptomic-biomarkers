@@ -31,7 +31,10 @@ suppressPackageStartupMessages({
   library(SummarizedExperiment)
 })
 
-ROOT <- "."
+source(file.path(dirname(sub("^--file=", "",
+  c(grep("^--file=", commandArgs(FALSE), value = TRUE), "./R/x")[1])),
+  "_root.R"))
+ROOT <- repo_root()
 RAW  <- file.path(ROOT, "data", "raw")
 OUT  <- file.path(ROOT, "data", "harmonized")
 RES  <- file.path(ROOT, "results")

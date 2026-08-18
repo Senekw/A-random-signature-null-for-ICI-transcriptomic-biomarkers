@@ -10,10 +10,11 @@ DRAWS   ?= 1000
 JOBS    ?= 4
 
 .PHONY: all download harmonize signatures gate score null axis ceiling \
-        meta headline figures forest test verify clean clean-results help
+        meta headline figures forest test verify check smoke clean \
+        clean-results help
 
 all: download harmonize signatures gate score null axis ceiling meta \
-     headline figures
+     headline figures check
 
 download:                       ## fetch ICB cohorts from ORCESTRA (~15 GB)
 	$(RSCRIPT) R/00_download_cohorts.R
@@ -51,6 +52,15 @@ headline:                       ## collect every manuscript number to JSON
 
 figures: forest                 ## regenerate manuscript figures
 	$(PYTHON) scripts/09_figures.py
+
+check:                          ## reconcile rerun numbers vs the manuscript
+	$(PYTHON) scripts/10_check_manuscript.py
+
+smoke:                          ## fast end-to-end check (100 draws)
+	$(MAKE) harmonize signatures gate score axis ceiling meta headline \
+	  DRAWS=100
+	$(PYTHON) scripts/04_null_calibration.py --draws 100 --jobs $(JOBS)
+	@echo "smoke run complete -- numbers are NOT publication values"
 
 test:                           ## unit tests (no data download needed)
 	$(PYTHON) -m pytest tests/ -q

@@ -208,11 +208,14 @@ def main() -> None:
     print(f"panel: {X.shape[1]} signatures x {X.shape[0]} labeled samples "
           f"across {n_cohorts} cohorts")
     if n_cohorts < 3:
-        print(f"NOTE: leave-one-cohort-out needs >=3 cohorts to be "
-              f"meaningful; {n_cohorts} present. Trained-panel rows will be "
-              f"NaN (no training folds), and the single-score rows are "
-              f"in-cohort, not transferable. Run the full compendium for "
-              f"the published ceiling.")
+        print(f"WARNING: only {n_cohorts} cohorts in the panel. "
+              f"Leave-one-cohort-out still runs, but each fold trains on "
+              f"{n_cohorts - 1} cohort(s), so the trained-panel rows "
+              f"(full_panel, full_panel_plus_infiltration, random_panel) are "
+              f"dominated by fold noise: they can fall below chance and can "
+              f"order arbitrarily with respect to each other. Do NOT read a "
+              f"directional result off them. Only the full compendium "
+              f"(>=3, published: 15 cohorts) supports the ceiling comparison.")
 
     rows = []
 
