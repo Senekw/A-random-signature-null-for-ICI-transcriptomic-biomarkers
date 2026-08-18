@@ -1,0 +1,25 @@
+# Cohort data is fetched from Zenodo DOIs by R/00_download_cohorts.R,
+# never redistributed here.
+data/raw/*
+data/harmonized/*
+!data/raw/.gitkeep
+!data/harmonized/.gitkeep
+
+# Generated results and figures. Run the pipeline to populate.
+results/*
+figures/*.png
+!results/.gitkeep
+!figures/.gitkeep
+
+# Signature library is assembled from upstream at build time.
+signatures/signatures.json
+signatures/signature_provenance.csv
+signatures/.cache/
+
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.Rhistory
+.RData
+.DS_Store

@@ -1,0 +1,110 @@
+# IOBR signature_collection roster: the 90 curated immune/immuno-oncology
+# gene sets, disjoint from the 12 canonical named predictors in
+# canonical_signatures.yaml. Derived as the union of these IOBR sig_group
+# categories, restricted to sets present in signature_collection:
+#
+#   tumor_signature
+#   io_biomarkers
+#   immu_microenvironment
+#   immu_suppression
+#   immu_exclusion
+#   immu_exhaustion
+#   TCR_BCR
+#   Rooney_et_al
+#   Bindea_et_al
+#   Li_et_al
+#   EMT
+#   Peng_et_al
+#   NK
+#
+# Regenerate/verify with: python scripts/verify_roster.py
+APM
+Antigen_Processing_and_Presentation_Li_et_al
+Antimicrobials_Li_et_al
+BCR_Signaling_Pathway_Li_et_al
+B_cells_Bindea_et_al
+B_cells_Rooney_et_al
+CAF_Peng_et_al
+CD8_Rooney_et_al
+CD8_T_cells_Bindea_et_al
+CD_8_T_effector
+CellCycle_Reg
+Cell_cycle
+Chemokine_Receptors_Li_et_al
+Chemokines_Li_et_al
+Co_inhibition_APC_Rooney_et_al
+Co_inhibition_T_cell_Rooney_et_al
+Co_stimulation_APC_Rooney_et_al
+Co_stimulation_T_cell_Rooney_et_al
+Cytokine_Receptors_Li_et_al
+Cytokines_Li_et_al
+Cytotoxic_cells_Bindea_et_al
+DC_Bindea_et_al
+DDR
+EMT1
+EMT2
+EMT3
+EV_Cell_2020
+Eosinophils_Bindea_et_al
+Exhausted_CD8_Danaher_et_al
+Ferroptosis
+GPAGs
+Histones
+Homologous_recombination
+ICB_resistance_Peng_et_al
+Immune_Checkpoint
+Interferon_Receptor_Li_et_al
+Interferons_Li_et_al
+Interleukins_Li_et_al
+Interleukins_Receptor_Li_et_al
+Lymph_vessels_Bindea_et_al
+MDSC_Peng_et_al
+MDSC_Wang_et_al
+MHC_Class_I_Rooney_et_al
+MT_exosome
+Macrophages_Bindea_et_al
+Macrophages_Rooney_et_al
+Mast_cells_Bindea_et_al
+Mismatch_Repair
+Molecular_Cancer_m6A
+NK_CD56dim_cells_Bindea_et_al
+NK_CD56dim_cells_Danaher_et_al
+NK_cells_Bindea_et_al
+NK_cells_Danaher_et_al
+NK_cells_Rooney_et_al
+Natural_Killer_Cell_Cytotoxicity_Li_et_al
+Nature_metabolism_Hypoxia
+Neutrophils_Bindea_et_al
+Neutrophils_Rooney_et_al
+Normal_mucosa_Bindea_et_al
+PPAGs
+Pan_F_TBRs
+Positive_regulation_of_exosomal_secretion
+SW480_cancer_cells_Bindea_et_al
+TAM_Peng_et_al
+TCR_signaling_Pathway_Li_et_al
+TFH_Bindea_et_al
+TGFb_Family_Member_Li_et_al
+TGFb_Family_Member_Receptor_Li_et_al
+TMEscoreA_CIR
+TMEscoreB_CIR
+TNF_Family_Members_Li_et_al
+TNF_Family_Members_Receptors_Li_et_al
+T_cell_accumulation_Peng_et_al
+T_cell_exhaustion_Peng_et_al
+T_cell_regulatory_Peng_et_al
+T_cells_Bindea_et_al
+T_helper_cells_Bindea_et_al
+Tcm_Bindea_et_al
+Tem_Bindea_et_al
+Tgd_Bindea_et_al
+Th17_cells_Bindea_et_al
+Th1_cells_Bindea_et_al
+Th2_cells_Bindea_et_al
+Treg_Rooney_et_al
+Type_II_IFN_Reponse_Rooney_et_al
+Type_I_IFN_Reponse_Rooney_et_al
+WNT_target
+aDC_Bindea_et_al
+iDC_Bindea_et_al
+pDCs_Rooney_et_al

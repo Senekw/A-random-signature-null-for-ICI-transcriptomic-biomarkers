@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "icinull"
+version = "1.0.0"
+description = "A random-signature null for ICI transcriptomic biomarkers"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Sean G. Lee", email = "seangplee@gmail.com" }]
+keywords = ["immunotherapy", "checkpoint-inhibitor", "gene-signature",
+            "benchmark", "null-model", "transcriptomics"]
+classifiers = [
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "scipy>=1.10",
+  "scikit-learn>=1.3",
+  "matplotlib>=3.7",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4"]
+survival = ["lifelines>=0.27"]
+
+[project.urls]
+Repository = "https://github.com/Senekw/A-random-signature-null-for-ICI-transcriptomic-biomarkers"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

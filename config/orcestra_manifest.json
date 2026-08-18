@@ -1,0 +1,128 @@
+[
+  {
+    "name": "ICB_Braun",
+    "doi": "10.5281/zenodo.7332074",
+    "download_url": "https://zenodo.org/record/7332074/files/ICB_Braun.rds?download=1",
+    "datatypes": "rnaseq;snv"
+  },
+  {
+    "name": "ICB_Gide",
+    "doi": "10.5281/zenodo.7332096",
+    "download_url": "https://zenodo.org/record/7332096/files/ICB_Gide.rds?download=1",
+    "datatypes": "rnaseq"
+  },
+  {
+    "name": "ICB_Hugo",
+    "doi": "10.5281/zenodo.7332108",
+    "download_url": "https://zenodo.org/record/7332108/files/ICB_Hugo.rds?download=1",
+    "datatypes": "rnaseq"
+  },
+  {
+    "name": "ICB_Hwang",
+    "doi": "10.5281/zenodo.7332114",
+    "download_url": "https://zenodo.org/record/7332114/files/ICB_Hwang.rds?download=1",
+    "datatypes": "rnaseq"
+  },
+  {
+    "name": "ICB_Jerby_Arnon",
+    "doi": "10.5281/zenodo.7332119",
+    "download_url": "https://zenodo.org/record/7332119/files/ICB_Jerby_Arnon.rds?download=1",
+    "datatypes": "rnaseq"
+  },
+  {
+    "name": "ICB_Jung",
+    "doi": "10.5281/zenodo.7332134",
+    "download_url": "https://zenodo.org/record/7332134/files/ICB_Jung.rds?download=1",
+    "datatypes": "rnaseq;snv"
+  },
+  {
+    "name": "ICB_Kim",
+    "doi": "10.5281/zenodo.7332153",
+    "download_url": "https://zenodo.org/record/7332153/files/ICB_Kim.rds?download=1",
+    "datatypes": "rnaseq"
+  },
+  {
+    "name": "ICB_Limagne1",
+    "doi": "10.5281/zenodo.7458950",
+    "download_url": "https://zenodo.org/record/7458950/files/ICB_Limagne1.rds?download=1",
+    "datatypes": "rnaseq"
+  },
+  {
+    "name": "ICB_Limagne2",
+    "doi": "10.5281/zenodo.7458956",
+    "download_url": "https://zenodo.org/record/7458956/files/ICB_Limagne2.rds?download=1",
+    "datatypes": "rnaseq"
+  },
+  {
+    "name": "ICB_Liu",
+    "doi": "10.5281/zenodo.7332172",
+    "download_url": "https://zenodo.org/record/7332172/files/ICB_Liu.rds?download=1",
+    "datatypes": "rnaseq;snv;cna"
+  },
+  {
+    "name": "ICB_Mariathasan",
+    "doi": "10.5281/zenodo.7332183",
+    "download_url": "https://zenodo.org/record/7332183/files/ICB_Mariathasan.rds?download=1",
+    "datatypes": "rnaseq;snv;cna"
+  },
+  {
+    "name": "ICB_Miao1",
+    "doi": "10.5281/zenodo.7332188",
+    "download_url": "https://zenodo.org/record/7332188/files/ICB_Miao1.rds?download=1",
+    "datatypes": "rnaseq;snv"
+  },
+  {
+    "name": "ICB_Nathanson",
+    "doi": "10.5281/zenodo.7332207",
+    "download_url": "https://zenodo.org/record/7332207/files/ICB_Nathanson.rds?download=1",
+    "datatypes": "rnaseq;snv"
+  },
+  {
+    "name": "ICB_Padron",
+    "doi": "10.5281/zenodo.7332212",
+    "download_url": "https://zenodo.org/record/7332212/files/ICB_Padron.rds?download=1",
+    "datatypes": "rnaseq"
+  },
+  {
+    "name": "ICB_Puch",
+    "doi": "10.5281/zenodo.7332226",
+    "download_url": "https://zenodo.org/record/7332226/files/ICB_Puch.rds?download=1",
+    "datatypes": "rnaseq"
+  },
+  {
+    "name": "ICB_Riaz",
+    "doi": "10.5281/zenodo.7332230",
+    "download_url": "https://zenodo.org/record/7332230/files/ICB_Riaz.rds?download=1",
+    "datatypes": "rnaseq;snv"
+  },
+  {
+    "name": "ICB_Roh",
+    "doi": "10.5281/zenodo.7332236",
+    "download_url": "https://zenodo.org/record/7332236/files/ICB_Roh.rds?download=1",
+    "datatypes": "rnaseq;snv"
+  },
+  {
+    "name": "ICB_Shiuan",
+    "doi": "10.5281/zenodo.7332259",
+    "download_url": "https://zenodo.org/record/7332259/files/ICB_Shiuan.rds?download=1",
+    "datatypes": "rnaseq"
+  },
+  {
+    "name": "ICB_Snyder",
+    "doi": "10.5281/zenodo.7332266",
+    "download_url": "https://zenodo.org/record/7332266/files/ICB_Snyder.rds?download=1",
+    "datatypes": "rnaseq"
+  },
+  {
+    "name": "ICB_VanDenEnde",
+    "doi": "10.5281/zenodo.7332295",
+    "download_url": "https://zenodo.org/record/7332295/files/ICB_VanDenEnde.rds?download=1",
+    "datatypes": "rnaseq"
+  },
+  {
+    "name": "ICB_Van_Allen",
+    "doi": "10.5281/zenodo.7332289",
+    "download_url": "https://zenodo.org/record/7332289/files/ICB_Van_Allen.rds?download=1",
+    "datatypes": "rnaseq;snv;cna"
+  }
+]

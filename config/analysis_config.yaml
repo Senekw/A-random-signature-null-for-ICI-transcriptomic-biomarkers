@@ -1,0 +1,82 @@
+# Pre-specified analysis configuration.
+# Every value here was fixed before performance metrics were computed
+# (see docs/methods_prespec.md). Changing a value invalidates the
+# pre-specification and must be recorded as a deviation.
+
+seed: 20260705
+seed_stability_check: [20260705, 1, 42]
+
+# ---- Cohort inclusion gate (G1-G3), fixed a priori ----
+inclusion_gate:
+  min_response_labeled: 20      # G1
+  min_minority_class: 5         # G2
+  min_measured_genes: 10000     # G3
+
+# ---- Expression harmonization ----
+expression:
+  assay: expr_gene_tpm          # ORCESTRA MAE experiment name; log2-TPM
+  symbol_column: gene_name      # rowData column carrying HUGO symbols
+  duplicate_symbol_rule: max_mean_expression
+  expressed_gene_rule:
+    # A gene enters the "expressed universe" (the pool random sets are
+    # drawn from, and the denominator for G3) if it is detected in at
+    # least this fraction of samples in the cohort.
+    min_detected_fraction: 0.20
+
+# ---- Response definition ----
+response:
+  primary:
+    responders: [CR, PR]
+    non_responders: [SD, PD]
+  strict:                       # sensitivity analysis: discard SD
+    responders: [CR, PR]
+    non_responders: [PD]
+
+# ---- Scoring ----
+scoring:
+  primary: mean_z               # mean of per-gene z-scores within cohort
+  sensitivity: ssgsea
+  ssgsea_alpha: 0.25
+  min_genes_covered: 2          # signature must map >=2 genes to be scored
+
+# ---- Per-signature-per-cohort evaluability ----
+evaluability:
+  min_samples: 15
+  require_both_classes: true
+
+# ---- Random-signature null ----
+null_model:
+  n_draws: 1000
+  size_matching: realized       # match the signature's realized (covered) size
+  universe: expressed_genes     # per-cohort expressed universe
+  scoring: mean_z
+  alternative: greater          # one-sided: P(random AUROC >= observed)
+  pooling: stouffer             # across cohorts, on z-vs-null statistics
+  fdr_method: fdr_bh
+
+# ---- Meta-analysis ----
+meta:
+  scale: logit_auroc
+  estimator: REML
+  adjustment: hartung_knapp     # Hartung-Knapp-Sidik-Jonkman
+  se_estimator: hanley_mcneil
+  leave_one_cohort_out: true
+
+# ---- Confound / single-axis analysis ----
+axis:
+  reference_signature: T_cell_inflamed_GEP_Ayers_et_al
+  pca_on: standardized_signature_scores
+  estimate_partial_out: immune_score
+
+# ---- Constructive ceiling (leave-one-cohort-out) ----
+ceiling:
+  model: l2_logistic
+  C: 0.3
+  standardize_on: training_cohorts
+  cluster_bootstrap_n: 2000
+  predictors:
+    - gep_axis
+    - estimate_immune
+    - full_panel
+    - full_panel_plus_infiltration
+    - random_panel

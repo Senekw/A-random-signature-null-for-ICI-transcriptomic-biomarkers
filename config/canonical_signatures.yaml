@@ -1,0 +1,113 @@
+# The 12 canonical named ICI-response predictors.
+#
+# Gene membership is NOT hard-coded here. Each entry names the upstream
+# curated file in bhklab/SignatureSets (the companion repository of the
+# PredictioR compendium) from which membership is pulled at build time by
+# scripts/01_build_signatures.py, so the library is traceable to a
+# maintained source rather than to a transcription in this repo.
+#
+# `direction`: +1 = higher score predicts response;
+#              -1 = higher score predicts resistance.
+# `pmid`      : primary publication for the signature.
+
+- name: T_cell_inflamed_GEP_Ayers_et_al
+  label: T-cell-inflamed GEP (18-gene)
+  source: signaturesets
+  path: data-raw/IO/Tcell-inflamed_Ayers.csv
+  direction: 1
+  pmid: 28650338
+  reference: "Ayers M, et al. J Clin Invest 2017;127:2930-40."
+
+- name: IFNG_6gene_Ayers
+  label: Interferon-gamma (6-gene)
+  source: signaturesets
+  path: data-raw/IO/IFN_Ayers.csv
+  direction: 1
+  pmid: 28650338
+  reference: "Ayers M, et al. J Clin Invest 2017;127:2930-40."
+
+- name: Cytolytic_Activity_Rooney_et_al
+  label: Cytolytic activity (GZMA, PRF1)
+  source: signaturesets
+  path: data-raw/IO/CYT_Rooney.csv
+  direction: 1
+  pmid: 25594174
+  reference: "Rooney MS, et al. Cell 2015;160:48-61."
+
+- name: Chemokine12_Messina
+  label: 12-chemokine score
+  source: signaturesets
+  path: data-raw/IO/Chemokine_Messina.csv
+  direction: 1
+  pmid: 22826636
+  reference: "Messina JL, et al. Sci Rep 2012;2:765."
+
+- name: TLS_Cabrita
+  label: Tertiary lymphoid structure (Cabrita)
+  source: signaturesets
+  path: data-raw/IO/TLS_Cabrita.csv
+  direction: 1
+  pmid: 31942071
+  reference: "Cabrita R, et al. Nature 2020;577:561-5."
+
+- name: TLS_12chemokine_Prabhakaran
+  label: 12-chemokine TLS score (Prabhakaran)
+  source: signaturesets
+  path: data-raw/IO/Chemokine_Messina.csv
+  direction: 1
+  pmid: 28629479
+  reference: "Prabhakaran S, et al. Breast Cancer Res 2017;19:71."
+  note: >
+    Prabhakaran et al. evaluate the 12-chemokine gene-expression score;
+    membership is the same 12-chemokine list curated by SignatureSets.
+    Retained as a separately-named library entry because it is cited as a
+    distinct published TLS predictor, and its duplication with
+    Chemokine12_Messina is itself informative for the collapse analysis.
+
+- name: Roh_immune
+  label: Roh immune activation
+  source: signaturesets
+  path: data-raw/IO/ImmuneScore_Roh.csv
+  direction: 1
+  pmid: 28251903
+  reference: "Roh W, et al. Sci Transl Med 2017;9:eaah3560."
+
+- name: MHC_I
+  label: MHC class I antigen presentation
+  source: signaturesets
+  path: data-raw/IO/MHC-I_Liu.csv
+  direction: 1
+  pmid: 33028655
+  reference: "Liu D, et al. (MHC-I set as curated in SignatureSets)"
+
+- name: MHC_II
+  label: MHC class II antigen presentation
+  source: signaturesets
+  path: data-raw/IO/MHC-II_Liu.csv
+  direction: 1
+  pmid: 33028655
+  reference: "Liu D, et al. (MHC-II set as curated in SignatureSets)"
+
+- name: PDL1_CD274
+  label: PD-L1 (CD274, single gene)
+  source: literal
+  genes: [CD274]
+  direction: 1
+  pmid: 25428504
+  reference: "Single-gene checkpoint marker."
+
+- name: PDCD1
+  label: PD-1 (PDCD1, single gene)
+  source: literal
+  genes: [PDCD1]
+  direction: 1
+  pmid: 25428504
+  reference: "Single-gene checkpoint marker."
+
+- name: CTLA4
+  label: CTLA-4 (single gene)
+  source: literal
+  genes: [CTLA4]
+  direction: 1
+  pmid: 25428504
+  reference: "Single-gene checkpoint marker."

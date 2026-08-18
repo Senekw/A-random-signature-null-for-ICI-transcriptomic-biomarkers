@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this harness, please cite the manuscript below."
+title: "A random-signature null for ICI transcriptomic biomarkers"
+abstract: >-
+  Re-runnable null-calibration harness for benchmarking published
+  immune-checkpoint-inhibitor response gene signatures against
+  size-matched random gene sets across uniformly-processed public ICI
+  cohorts.
+type: software
+version: 1.0.0
+license: MIT
+repository-code: "https://github.com/Senekw/A-random-signature-null-for-ICI-transcriptomic-biomarkers"
+keywords:
+  - immunotherapy
+  - immune checkpoint inhibitor
+  - gene signature
+  - null model
+  - benchmark
+  - transcriptomics
+authors:
+  - family-names: Lee
+    given-names: Sean G.
+    email: seangplee@gmail.com
+    orcid: "https://orcid.org/0009-0008-9188-0440"
+    affiliation: "Independent Researcher, Katy, TX, USA"
+preferred-citation:
+  type: article
+  title: >-
+    Most published immunotherapy-response gene signatures do not outperform
+    random gene sets, and collapse onto a single tumor-inflammation axis
+  authors:
+    - family-names: Lee
+      given-names: Sean G.
+      orcid: "https://orcid.org/0009-0008-9188-0440"
+  year: 2026
+  journal: "Journal for ImmunoTherapy of Cancer"
+  notes: "Submitted."
