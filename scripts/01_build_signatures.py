@@ -26,6 +26,7 @@ Usage:  python scripts/01_build_signatures.py [--offline]
 from __future__ import annotations
 
 import argparse
+import hashlib
 import io
 import json
 import os
@@ -244,6 +245,16 @@ def main() -> None:
                                   "unmapped": ";".join(sorted(still))})
 
     prov["n_genes"] = prov.signature.map(lambda s: len(sigs[s]["genes"]))
+
+    # A stable key for gene-set MEMBERSHIP, so that duplicate signatures are
+    # detectable downstream from the committed table alone rather than only
+    # from this script's stderr.
+    def _set_key(name: str) -> str:
+        genes = ",".join(sorted(sigs[name]["genes"]))
+        return hashlib.blake2b(genes.encode("utf-8"),
+                               digest_size=8).hexdigest()
+
+    prov["gene_set_key"] = prov.signature.map(_set_key)
 
     if all_renames:
         print(f"\nsymbol harmonization: {len(all_renames)} retired symbol(s) "

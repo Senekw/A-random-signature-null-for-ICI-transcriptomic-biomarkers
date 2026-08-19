@@ -1,103 +1,103 @@
-signature,label,collection,n_genes,direction,pmid,reference,upstream_source
-T_cell_inflamed_GEP_Ayers_et_al,T-cell-inflamed GEP (18-gene),canonical,18,1,28650338,"Ayers M, et al. J Clin Invest 2017;127:2930-40.",bhklab/SignatureSets:data-raw/IO/Tcell-inflamed_Ayers.csv
-IFNG_6gene_Ayers,Interferon-gamma (6-gene),canonical,6,1,28650338,"Ayers M, et al. J Clin Invest 2017;127:2930-40.",bhklab/SignatureSets:data-raw/IO/IFN_Ayers.csv
-Cytolytic_Activity_Rooney_et_al,"Cytolytic activity (GZMA, PRF1)",canonical,2,1,25594174,"Rooney MS, et al. Cell 2015;160:48-61.",bhklab/SignatureSets:data-raw/IO/CYT_Rooney.csv
-Chemokine12_Messina,12-chemokine score,canonical,12,1,22826636,"Messina JL, et al. Sci Rep 2012;2:765.",bhklab/SignatureSets:data-raw/IO/Chemokine_Messina.csv
-TLS_Cabrita,Tertiary lymphoid structure (Cabrita),canonical,9,1,31942071,"Cabrita R, et al. Nature 2020;577:561-5.",bhklab/SignatureSets:data-raw/IO/TLS_Cabrita.csv
-TLS_12chemokine_Prabhakaran,12-chemokine TLS score (Prabhakaran),canonical,12,1,28629479,"Prabhakaran S, et al. Breast Cancer Res 2017;19:71.",bhklab/SignatureSets:data-raw/IO/Chemokine_Messina.csv
-Roh_immune,Roh immune activation,canonical,41,1,28251903,"Roh W, et al. Sci Transl Med 2017;9:eaah3560.",bhklab/SignatureSets:data-raw/IO/ImmuneScore_Roh.csv
-MHC_I,MHC class I antigen presentation,canonical,8,1,33028655,"Liu D, et al. (MHC-I set as curated in SignatureSets)",bhklab/SignatureSets:data-raw/IO/MHC-I_Liu.csv
-MHC_II,MHC class II antigen presentation,canonical,13,1,33028655,"Liu D, et al. (MHC-II set as curated in SignatureSets)",bhklab/SignatureSets:data-raw/IO/MHC-II_Liu.csv
-PDL1_CD274,"PD-L1 (CD274, single gene)",canonical,1,1,25428504,Single-gene checkpoint marker.,literal (single-gene marker)
-PDCD1,"PD-1 (PDCD1, single gene)",canonical,1,1,25428504,Single-gene checkpoint marker.,literal (single-gene marker)
-CTLA4,CTLA-4 (single gene),canonical,1,1,25428504,Single-gene checkpoint marker.,literal (single-gene marker)
-APM,APM,iobr,6,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Antigen_Processing_and_Presentation_Li_et_al,Antigen Processing and Presentation Li et al,iobr,135,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Antimicrobials_Li_et_al,Antimicrobials Li et al,iobr,463,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-BCR_Signaling_Pathway_Li_et_al,BCR Signaling Pathway Li et al,iobr,64,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-B_cells_Bindea_et_al,B cells Bindea et al,iobr,33,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-B_cells_Rooney_et_al,B cells Rooney et al,iobr,10,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-CAF_Peng_et_al,CAF Peng et al,iobr,50,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-CD8_Rooney_et_al,CD8 Rooney et al,iobr,5,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-CD8_T_cells_Bindea_et_al,CD8 T cells Bindea et al,iobr,37,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-CD_8_T_effector,CD 8 T effector,iobr,8,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-CellCycle_Reg,CellCycle Reg,iobr,10,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Cell_cycle,Cell cycle,iobr,123,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Chemokine_Receptors_Li_et_al,Chemokine Receptors Li et al,iobr,44,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Chemokines_Li_et_al,Chemokines Li et al,iobr,95,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Co_inhibition_APC_Rooney_et_al,Co inhibition APC Rooney et al,iobr,5,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Co_inhibition_T_cell_Rooney_et_al,Co inhibition T cell Rooney et al,iobr,10,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Co_stimulation_APC_Rooney_et_al,Co stimulation APC Rooney et al,iobr,11,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Co_stimulation_T_cell_Rooney_et_al,Co stimulation T cell Rooney et al,iobr,13,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Cytokine_Receptors_Li_et_al,Cytokine Receptors Li et al,iobr,294,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Cytokines_Li_et_al,Cytokines Li et al,iobr,428,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Cytotoxic_cells_Bindea_et_al,Cytotoxic cells Bindea et al,iobr,17,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-DC_Bindea_et_al,DC Bindea et al,iobr,7,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-DDR,DDR,iobr,166,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-EMT1,EMT1,iobr,8,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-EMT2,EMT2,iobr,7,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-EMT3,EMT3,iobr,6,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-EV_Cell_2020,EV Cell 2020,iobr,23,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Eosinophils_Bindea_et_al,Eosinophils Bindea et al,iobr,32,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Exhausted_CD8_Danaher_et_al,Exhausted CD8 Danaher et al,iobr,4,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Ferroptosis,Ferroptosis,iobr,32,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-GPAGs,GPAGs,iobr,30,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Histones,Histones,iobr,4,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Homologous_recombination,Homologous recombination,iobr,28,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-ICB_resistance_Peng_et_al,ICB resistance Peng et al,iobr,50,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Immune_Checkpoint,Immune Checkpoint,iobr,7,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Interferon_Receptor_Li_et_al,Interferon Receptor Li et al,iobr,3,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Interferons_Li_et_al,Interferons Li et al,iobr,17,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Interleukins_Li_et_al,Interleukins Li et al,iobr,38,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Interleukins_Receptor_Li_et_al,Interleukins Receptor Li et al,iobr,37,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Lymph_vessels_Bindea_et_al,Lymph vessels Bindea et al,iobr,3,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-MDSC_Peng_et_al,MDSC Peng et al,iobr,50,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-MDSC_Wang_et_al,MDSC Wang et al,iobr,38,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-MHC_Class_I_Rooney_et_al,MHC Class I Rooney et al,iobr,3,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-MT_exosome,MT exosome,iobr,10,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Macrophages_Bindea_et_al,Macrophages Bindea et al,iobr,33,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Macrophages_Rooney_et_al,Macrophages Rooney et al,iobr,10,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Mast_cells_Bindea_et_al,Mast cells Bindea et al,iobr,31,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Mismatch_Repair,Mismatch Repair,iobr,23,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Molecular_Cancer_m6A,Molecular Cancer m6A,iobr,21,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-NK_CD56dim_cells_Bindea_et_al,NK CD56dim cells Bindea et al,iobr,25,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-NK_CD56dim_cells_Danaher_et_al,NK CD56dim cells Danaher et al,iobr,4,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-NK_cells_Bindea_et_al,NK cells Bindea et al,iobr,37,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-NK_cells_Danaher_et_al,NK cells Danaher et al,iobr,3,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-NK_cells_Rooney_et_al,NK cells Rooney et al,iobr,2,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Natural_Killer_Cell_Cytotoxicity_Li_et_al,Natural Killer Cell Cytotoxicity Li et al,iobr,127,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Nature_metabolism_Hypoxia,Nature metabolism Hypoxia,iobr,15,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Neutrophils_Bindea_et_al,Neutrophils Bindea et al,iobr,31,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Neutrophils_Rooney_et_al,Neutrophils Rooney et al,iobr,10,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Normal_mucosa_Bindea_et_al,Normal mucosa Bindea et al,iobr,32,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-PPAGs,PPAGs,iobr,27,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Pan_F_TBRs,Pan F TBRs,iobr,19,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Positive_regulation_of_exosomal_secretion,Positive regulation of exosomal secretion,iobr,14,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-SW480_cancer_cells_Bindea_et_al,SW480 cancer cells Bindea et al,iobr,37,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-TAM_Peng_et_al,TAM Peng et al,iobr,50,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-TCR_signaling_Pathway_Li_et_al,TCR signaling Pathway Li et al,iobr,92,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-TFH_Bindea_et_al,TFH Bindea et al,iobr,32,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-TGFb_Family_Member_Li_et_al,TGFb Family Member Li et al,iobr,33,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-TGFb_Family_Member_Receptor_Li_et_al,TGFb Family Member Receptor Li et al,iobr,12,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-TMEscoreA_CIR,TMEscoreA CIR,iobr,64,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-TMEscoreB_CIR,TMEscoreB CIR,iobr,179,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-TNF_Family_Members_Li_et_al,TNF Family Members Li et al,iobr,12,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-TNF_Family_Members_Receptors_Li_et_al,TNF Family Members Receptors Li et al,iobr,19,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-T_cell_accumulation_Peng_et_al,T cell accumulation Peng et al,iobr,17,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-T_cell_exhaustion_Peng_et_al,T cell exhaustion Peng et al,iobr,50,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-T_cell_regulatory_Peng_et_al,T cell regulatory Peng et al,iobr,50,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-T_cells_Bindea_et_al,T cells Bindea et al,iobr,18,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-T_helper_cells_Bindea_et_al,T helper cells Bindea et al,iobr,23,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Tcm_Bindea_et_al,Tcm Bindea et al,iobr,39,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Tem_Bindea_et_al,Tem Bindea et al,iobr,15,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Tgd_Bindea_et_al,Tgd Bindea et al,iobr,6,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Th17_cells_Bindea_et_al,Th17 cells Bindea et al,iobr,3,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Th1_cells_Bindea_et_al,Th1 cells Bindea et al,iobr,27,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Th2_cells_Bindea_et_al,Th2 cells Bindea et al,iobr,27,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Treg_Rooney_et_al,Treg Rooney et al,iobr,7,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Type_II_IFN_Reponse_Rooney_et_al,Type II IFN Reponse Rooney et al,iobr,3,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-Type_I_IFN_Reponse_Rooney_et_al,Type I IFN Reponse Rooney et al,iobr,10,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-WNT_target,WNT target,iobr,4,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-aDC_Bindea_et_al,aDC Bindea et al,iobr,5,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-iDC_Bindea_et_al,iDC Bindea et al,iobr,31,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-pDCs_Rooney_et_al,pDCs Rooney et al,iobr,10,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
+signature,label,collection,n_genes,direction,pmid,reference,upstream_source,gene_set_key
+T_cell_inflamed_GEP_Ayers_et_al,T-cell-inflamed GEP (18-gene),canonical,18,1,28650338,"Ayers M, et al. J Clin Invest 2017;127:2930-40.",bhklab/SignatureSets:data-raw/IO/Tcell-inflamed_Ayers.csv,d86d8c3dffbecf1c
+IFNG_6gene_Ayers,Interferon-gamma (6-gene),canonical,6,1,28650338,"Ayers M, et al. J Clin Invest 2017;127:2930-40.",bhklab/SignatureSets:data-raw/IO/IFN_Ayers.csv,ef6b3af49cb2bee6
+Cytolytic_Activity_Rooney_et_al,"Cytolytic activity (GZMA, PRF1)",canonical,2,1,25594174,"Rooney MS, et al. Cell 2015;160:48-61.",bhklab/SignatureSets:data-raw/IO/CYT_Rooney.csv,5518b015a5c839eb
+Chemokine12_Messina,12-chemokine score,canonical,12,1,22826636,"Messina JL, et al. Sci Rep 2012;2:765.",bhklab/SignatureSets:data-raw/IO/Chemokine_Messina.csv,16967866b135f633
+TLS_Cabrita,Tertiary lymphoid structure (Cabrita),canonical,9,1,31942071,"Cabrita R, et al. Nature 2020;577:561-5.",bhklab/SignatureSets:data-raw/IO/TLS_Cabrita.csv,82e7d83fcae04d85
+TLS_12chemokine_Prabhakaran,12-chemokine TLS score (Prabhakaran),canonical,12,1,28629479,"Prabhakaran S, et al. Breast Cancer Res 2017;19:71.",bhklab/SignatureSets:data-raw/IO/Chemokine_Messina.csv,16967866b135f633
+Roh_immune,Roh immune activation,canonical,41,1,28251903,"Roh W, et al. Sci Transl Med 2017;9:eaah3560.",bhklab/SignatureSets:data-raw/IO/ImmuneScore_Roh.csv,933989db30f2f6cc
+MHC_I,MHC class I antigen presentation,canonical,8,1,33028655,"Liu D, et al. (MHC-I set as curated in SignatureSets)",bhklab/SignatureSets:data-raw/IO/MHC-I_Liu.csv,2f0fba0fe0bf1b8f
+MHC_II,MHC class II antigen presentation,canonical,13,1,33028655,"Liu D, et al. (MHC-II set as curated in SignatureSets)",bhklab/SignatureSets:data-raw/IO/MHC-II_Liu.csv,adcb08f22c2b5dbb
+PDL1_CD274,"PD-L1 (CD274, single gene)",canonical,1,1,25428504,Single-gene checkpoint marker.,literal (single-gene marker),5edd7b730eeba937
+PDCD1,"PD-1 (PDCD1, single gene)",canonical,1,1,25428504,Single-gene checkpoint marker.,literal (single-gene marker),da640250df258654
+CTLA4,CTLA-4 (single gene),canonical,1,1,25428504,Single-gene checkpoint marker.,literal (single-gene marker),bea64f6506b75f72
+APM,APM,iobr,6,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,a9f9aa6cfcf8ff00
+Antigen_Processing_and_Presentation_Li_et_al,Antigen Processing and Presentation Li et al,iobr,135,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,4a3333d398272de1
+Antimicrobials_Li_et_al,Antimicrobials Li et al,iobr,463,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,096ed5c07503531d
+BCR_Signaling_Pathway_Li_et_al,BCR Signaling Pathway Li et al,iobr,64,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,f7602973f193d44c
+B_cells_Bindea_et_al,B cells Bindea et al,iobr,33,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,0d2773b0c991256d
+B_cells_Rooney_et_al,B cells Rooney et al,iobr,10,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,8202e1c5b291c5ee
+CAF_Peng_et_al,CAF Peng et al,iobr,50,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,5e58af680da6569d
+CD8_Rooney_et_al,CD8 Rooney et al,iobr,5,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,c57df2d22f0510dd
+CD8_T_cells_Bindea_et_al,CD8 T cells Bindea et al,iobr,37,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,5c3ac968899282d3
+CD_8_T_effector,CD 8 T effector,iobr,8,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,86b53f72c682c291
+CellCycle_Reg,CellCycle Reg,iobr,10,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,10a8d946d2b1fdac
+Cell_cycle,Cell cycle,iobr,123,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,86ff85dbbe0b5620
+Chemokine_Receptors_Li_et_al,Chemokine Receptors Li et al,iobr,44,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,f47f677aa536e489
+Chemokines_Li_et_al,Chemokines Li et al,iobr,95,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,ba4bad6108e5dd44
+Co_inhibition_APC_Rooney_et_al,Co inhibition APC Rooney et al,iobr,5,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,9931591fd68c976c
+Co_inhibition_T_cell_Rooney_et_al,Co inhibition T cell Rooney et al,iobr,10,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,a3587d28c915b50c
+Co_stimulation_APC_Rooney_et_al,Co stimulation APC Rooney et al,iobr,11,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,c77686e812e65ecb
+Co_stimulation_T_cell_Rooney_et_al,Co stimulation T cell Rooney et al,iobr,13,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,90dcfedf33e03303
+Cytokine_Receptors_Li_et_al,Cytokine Receptors Li et al,iobr,294,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,36c333df5f193b9b
+Cytokines_Li_et_al,Cytokines Li et al,iobr,428,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,e38837deb1098754
+Cytotoxic_cells_Bindea_et_al,Cytotoxic cells Bindea et al,iobr,17,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,24b90afaf3878322
+DC_Bindea_et_al,DC Bindea et al,iobr,7,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,ae63dfd0ad09cfa4
+DDR,DDR,iobr,166,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,9396fe8f211d8365
+EMT1,EMT1,iobr,8,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,69689992753d26b2
+EMT2,EMT2,iobr,7,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,ea02b1a34a2c45e3
+EMT3,EMT3,iobr,6,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,03f6e6ebccf41fb9
+EV_Cell_2020,EV Cell 2020,iobr,23,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,0293a1fd8aa4bd2d
+Eosinophils_Bindea_et_al,Eosinophils Bindea et al,iobr,32,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,49b879624ee0d5ca
+Exhausted_CD8_Danaher_et_al,Exhausted CD8 Danaher et al,iobr,4,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,4b9edfbcf3627ba3
+Ferroptosis,Ferroptosis,iobr,32,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,f074875a2cf1768c
+GPAGs,GPAGs,iobr,30,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,1df845a4ba72cca3
+Histones,Histones,iobr,4,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,4b21c4f3088b18a5
+Homologous_recombination,Homologous recombination,iobr,28,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,49d5f058fb2041ab
+ICB_resistance_Peng_et_al,ICB resistance Peng et al,iobr,50,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,81473c1417e3cca4
+Immune_Checkpoint,Immune Checkpoint,iobr,7,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,12bc1fc8407516ff
+Interferon_Receptor_Li_et_al,Interferon Receptor Li et al,iobr,3,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,3946f9a0e23629c1
+Interferons_Li_et_al,Interferons Li et al,iobr,17,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,cffa1927ff7c561c
+Interleukins_Li_et_al,Interleukins Li et al,iobr,38,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,76bf3ea20ce73c5d
+Interleukins_Receptor_Li_et_al,Interleukins Receptor Li et al,iobr,37,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,86cd82a8f68d89dd
+Lymph_vessels_Bindea_et_al,Lymph vessels Bindea et al,iobr,3,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,04e43933e895812d
+MDSC_Peng_et_al,MDSC Peng et al,iobr,50,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,46693eb0fc73a86b
+MDSC_Wang_et_al,MDSC Wang et al,iobr,38,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,46279bde451731ad
+MHC_Class_I_Rooney_et_al,MHC Class I Rooney et al,iobr,3,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,6bc39b035decab39
+MT_exosome,MT exosome,iobr,10,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,08ff563b7fa6f6a0
+Macrophages_Bindea_et_al,Macrophages Bindea et al,iobr,33,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,b9db5ed163e37ff3
+Macrophages_Rooney_et_al,Macrophages Rooney et al,iobr,10,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,b19580850538a195
+Mast_cells_Bindea_et_al,Mast cells Bindea et al,iobr,31,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,3fca6f39a388b8be
+Mismatch_Repair,Mismatch Repair,iobr,23,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,e02100add4bba41c
+Molecular_Cancer_m6A,Molecular Cancer m6A,iobr,21,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,6e2c9c4dbf4dbadb
+NK_CD56dim_cells_Bindea_et_al,NK CD56dim cells Bindea et al,iobr,25,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,068f238d0ad0dbf9
+NK_CD56dim_cells_Danaher_et_al,NK CD56dim cells Danaher et al,iobr,4,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,3d73062fd90d38f7
+NK_cells_Bindea_et_al,NK cells Bindea et al,iobr,37,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,4f60998cbfc2f568
+NK_cells_Danaher_et_al,NK cells Danaher et al,iobr,3,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,761291467e1772eb
+NK_cells_Rooney_et_al,NK cells Rooney et al,iobr,2,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,6ea0ac52fcacc64d
+Natural_Killer_Cell_Cytotoxicity_Li_et_al,Natural Killer Cell Cytotoxicity Li et al,iobr,127,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,e9b4b32b4e0c644d
+Nature_metabolism_Hypoxia,Nature metabolism Hypoxia,iobr,15,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,9865ff6566c79cc7
+Neutrophils_Bindea_et_al,Neutrophils Bindea et al,iobr,31,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,e9e6dc78ca14e99a
+Neutrophils_Rooney_et_al,Neutrophils Rooney et al,iobr,10,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,61c9115b125a1894
+Normal_mucosa_Bindea_et_al,Normal mucosa Bindea et al,iobr,32,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,31ba74c43b95ef62
+PPAGs,PPAGs,iobr,27,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,3bb1f7a7aea2dd72
+Pan_F_TBRs,Pan F TBRs,iobr,19,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,959588d4d17d01ac
+Positive_regulation_of_exosomal_secretion,Positive regulation of exosomal secretion,iobr,14,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,37e7d2cfcbec874c
+SW480_cancer_cells_Bindea_et_al,SW480 cancer cells Bindea et al,iobr,37,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,1d774d69b6a1a5e6
+TAM_Peng_et_al,TAM Peng et al,iobr,50,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,0637e596e5d44f04
+TCR_signaling_Pathway_Li_et_al,TCR signaling Pathway Li et al,iobr,92,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,3345a18a884c20d0
+TFH_Bindea_et_al,TFH Bindea et al,iobr,32,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,6cc067fbfe2f19fe
+TGFb_Family_Member_Li_et_al,TGFb Family Member Li et al,iobr,33,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,02141aeb9cbf5c83
+TGFb_Family_Member_Receptor_Li_et_al,TGFb Family Member Receptor Li et al,iobr,12,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,e3dc8591044ce425
+TMEscoreA_CIR,TMEscoreA CIR,iobr,64,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,2ed4207aed4dd757
+TMEscoreB_CIR,TMEscoreB CIR,iobr,179,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,c033fd3875de7cd8
+TNF_Family_Members_Li_et_al,TNF Family Members Li et al,iobr,12,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,bd41f40a1b808556
+TNF_Family_Members_Receptors_Li_et_al,TNF Family Members Receptors Li et al,iobr,19,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,08d54983d6f3f46c
+T_cell_accumulation_Peng_et_al,T cell accumulation Peng et al,iobr,17,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,509549327d916ea6
+T_cell_exhaustion_Peng_et_al,T cell exhaustion Peng et al,iobr,50,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,8b0271436ecca45f
+T_cell_regulatory_Peng_et_al,T cell regulatory Peng et al,iobr,50,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,ec4ef17bb17003e1
+T_cells_Bindea_et_al,T cells Bindea et al,iobr,18,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,d9297ea39dbc83a3
+T_helper_cells_Bindea_et_al,T helper cells Bindea et al,iobr,23,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,0523219f5060faa2
+Tcm_Bindea_et_al,Tcm Bindea et al,iobr,39,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,7d19fad86c7e1532
+Tem_Bindea_et_al,Tem Bindea et al,iobr,15,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,4c4c18e48445c114
+Tgd_Bindea_et_al,Tgd Bindea et al,iobr,6,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,982755ecf5ccbb46
+Th17_cells_Bindea_et_al,Th17 cells Bindea et al,iobr,3,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,cd64f4fed11806d3
+Th1_cells_Bindea_et_al,Th1 cells Bindea et al,iobr,27,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,ced4b0a10f033d0e
+Th2_cells_Bindea_et_al,Th2 cells Bindea et al,iobr,27,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,7e74823717e49524
+Treg_Rooney_et_al,Treg Rooney et al,iobr,7,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,1c749e1db9ecf1c9
+Type_II_IFN_Reponse_Rooney_et_al,Type II IFN Reponse Rooney et al,iobr,3,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,26640eebdf2cfd36
+Type_I_IFN_Reponse_Rooney_et_al,Type I IFN Reponse Rooney et al,iobr,10,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,4d63cb742bfc1703
+WNT_target,WNT target,iobr,4,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,b84c96efd5f4fe84
+aDC_Bindea_et_al,aDC Bindea et al,iobr,5,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,66ae003f3efa113c
+iDC_Bindea_et_al,iDC Bindea et al,iobr,31,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,8b3981334503133f
+pDCs_Rooney_et_al,pDCs Rooney et al,iobr,10,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda,a0ded04b680800de

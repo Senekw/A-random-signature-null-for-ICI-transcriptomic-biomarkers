@@ -69,17 +69,23 @@ These were real defects, not tuning. Each changed results.
    rate and cut the Venet regression to n=99. Fixed to 1.
 
 2. **Cohorts use two different GENCODE vintages, and gene sets were being
-   silently truncated.** `ICB_Van_Allen`, `ICB_Miao1`, `ICB_Braun` and
-   `ICB_Puch` carry pre-2020 histone symbols (`HIST1H2AG`); the rest carry
-   current ones (`H2AC11`). 300–2,400 retired symbols per cohort. 80 of the
+   silently truncated.** Found by noticing that the `Histones` signature had
+   zero coverage in 11 of the 15 passing cohorts: `ICB_Van_Allen`,
+   `ICB_Miao1`, `ICB_Braun` and `ICB_Puch` carry pre-2020 histone symbols
+   (`HIST1H2AG`), and the other eleven carry current ones (`H2AC11`) — the
+   split *is* the bug. 300–2,400 retired symbols per cohort. 80 of the
    2,635 distinct signature genes matched *no* cohort at all, affecting 25
    signatures — and a set written in legacy symbols matched in some cohorts
    and vanished in others, making a signature's realized size, its
    size-matched null, and its meta-analysis weight depend on annotation
    vintage rather than biology. Fixed with `src/icinull/symbols.py`: both
-   sides of the join are mapped onto current NCBI official symbols, only
-   where the alias is unambiguous (`IL8RA` → CXCR1|CXCR2 is left alone and
-   reported, not guessed). 102 retired symbols updated. Recovered 8 tests.
+   sides of the join are mapped onto current NCBI official symbols, but only
+   where the alias resolves to exactly one current symbol. Ambiguous ones are
+   left alone and reported rather than guessed — `IL8RA` is a documented
+   synonym of *both* CXCR1 and CXCR2, `RAB7` of both RAB7A and RAB7B — as are
+   microarray probe IDs and composite entries like `GCLC/GCLM`
+   (`signatures/unmapped_genes.csv`, 45 identifiers). 102 retired symbols
+   updated; 8 tests recovered.
 
 3. **The random-panel baseline drew independent gene sets per cohort**, so
    column `random_007` meant a different gene set in every cohort and a model
@@ -108,7 +114,28 @@ These were real defects, not tuning. Each changed results.
    every aggregate double-weights that set. The builder now reports this on
    every run rather than leaving it as an unnoticed assumption.
 
-8. **The null was 26× slower than necessary**, re-standardizing the whole
+8. **The fixed seed did not actually fix the draws.** The per-signature seed
+   offset was `abs(hash(cohort)) % 997`, and Python randomizes string hashing
+   per process — so the same command drew *different* random gene sets on
+   every invocation, while the code and the pre-specification both claimed a
+   fixed seed. Verified directly: three fresh interpreters gave offsets 281,
+   63 and 752 for the same cohort. Replaced with a blake2b digest, which is
+   identical on every run and machine (pinned by `tests/test_seeding.py`,
+   which also asserts that `hash()` *would* have been unstable). A second
+   defect compounded it: `null_results.csv` recorded only the derived
+   per-test seed, so the base seed was unrecoverable and
+   `headline_numbers.json` reported a derived value as "the seed". The base
+   seed is now recorded separately and reports as 20260705.
+
+9. **The duplicated gene set is now quantified rather than only warned
+   about.** `signature_provenance.csv` carries a membership hash, and
+   `headline_numbers.json` reports `n_distinct_gene_sets: 101`, names the
+   duplicate pair, and gives every headline aggregate both with and without
+   it (de-duplicating moves the median AUROC by 0.001 and the
+   below-0.55 fraction by 0.003 — small, but no longer something a reader has
+   to discover).
+
+10. **The null was 26× slower than necessary**, re-standardizing the whole
    expression matrix on every draw. Now standardizes once per cohort:
    **1m53s instead of ~50 minutes** for the full 1,000-draw run, with
    bit-identical output (pinned by `test_null_fast_path_matches_reference`,

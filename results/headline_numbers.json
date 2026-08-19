@@ -62,6 +62,7 @@
     "median_auroc": 0.538472,
     "frac_tests_below_0.55": 0.534014,
     "median_gene_coverage": 1.0,
+    "mean_gene_coverage": 0.944471,
     "best_signatures_mean_auroc": {
       "CD_8_T_effector": 0.646779,
       "Chemokine12_Messina": 0.638793,
@@ -74,35 +75,49 @@
       "T_cells_Bindea_et_al": 0.629403,
       "Co_inhibition_T_cell_Rooney_et_al": 0.629257
     },
+    "duplicate_gene_sets": [
+      [
+        "Chemokine12_Messina",
+        "TLS_12chemokine_Prabhakaran"
+      ]
+    ],
+    "n_distinct_gene_sets": 101,
+    "deduplicated": {
+      "n_tests_mean_z": 1455,
+      "mean_auroc": 0.539425,
+      "median_auroc": 0.5375,
+      "frac_tests_below_0.55": 0.537457
+    },
     "scoring_method_pearson_r": 0.93575,
     "scoring_method_spearman_rho": 0.936036
   },
   "null_calibration": {
     "n_signature_cohort_tests": 1470,
     "n_draws_per_test": 1000,
-    "seed": 20260719,
-    "frac_beating_null_p05": 0.272109,
-    "frac_canonical_beating_null": 0.50289,
+    "seed": 20260705,
+    "seed_note": "base seed; per-test seeds are derived deterministically and stored in the `seed` column of null_results.csv",
+    "frac_beating_null_p05": 0.270748,
+    "frac_canonical_beating_null": 0.491329,
     "median_observed_auroc": 0.538889,
-    "median_null_q95": 0.620833,
+    "median_null_q95": 0.621082,
     "mean_observed_auroc": 0.540714,
-    "mean_null_auroc": 0.497024,
-    "mean_advantage_over_null": 0.043676,
+    "mean_null_auroc": 0.497108,
+    "mean_advantage_over_null": 0.043595,
     "null_beating_rate_by_cohort": {
       "Nathanson": 0.039216,
       "Miao1": 0.058824,
-      "Braun": 0.107843,
+      "Braun": 0.117647,
       "Hugo": 0.147059,
-      "Limagne1": 0.176471,
-      "Limagne2": 0.176471,
+      "Limagne1": 0.156863,
+      "Limagne2": 0.186275,
       "VanDenEnde": 0.204545,
-      "Van_Allen": 0.205882,
+      "Van_Allen": 0.22549,
       "Puch": 0.27451,
-      "Mariathasan": 0.306931,
+      "Mariathasan": 0.287129,
       "Riaz": 0.411765,
-      "Kim": 0.441176,
-      "Jung": 0.470588,
-      "Liu": 0.475248,
+      "Kim": 0.421569,
+      "Liu": 0.465347,
+      "Jung": 0.480392,
       "Gide": 0.54902
     },
     "null_beating_range": [

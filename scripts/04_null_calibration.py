@@ -27,6 +27,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import sys
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
@@ -51,6 +52,17 @@ def passing_cohorts() -> list:
     return list(g.loc[g.passes_gate, "cohort"])
 
 
+def _stable_offset(name: str, modulus: int = 997) -> int:
+    """A per-cohort seed offset that is identical on every run and machine.
+
+    ``hash()`` cannot be used: Python randomizes string hashing per process
+    unless ``PYTHONHASHSEED`` is set, so it would make the null
+    irreproducible while appearing to be seeded.
+    """
+    digest = hashlib.blake2b(name.encode("utf-8"), digest_size=8).digest()
+    return int.from_bytes(digest, "big") % modulus
+
+
 def run_cohort(cohort: str, draws: int, seed: int, response: str) -> list:
     """All signatures against the null in one cohort."""
     cfg = load_config()
@@ -67,8 +79,14 @@ def run_cohort(cohort: str, draws: int, seed: int, response: str) -> list:
             continue
 
         # Per-signature seed offset: every signature x cohort draw is
+        # independent, but the offset must be STABLE across interpreter
+        # runs. Python's hash() on strings is randomized per process
+        # (PYTHONHASHSEED), so using it here silently defeats the fixed
+        # seed the pre-specification promises: the same command would draw
+        # different gene sets on every invocation. blake2b gives the same
+        # offset forever, on every machine.
         # reproducible on its own, and no two share a random stream.
-        sig_seed = seed + 1000 * i + abs(hash(cohort)) % 997
+        sig_seed = seed + 1000 * i + _stable_offset(cohort)
 
         res = random_null_test(
             c.expr, y, covered,
@@ -86,6 +104,7 @@ def run_cohort(cohort: str, draws: int, seed: int, response: str) -> list:
             "signature": name,
             "collection": spec.get("collection", ""),
             "direction": int(spec["direction"]),
+            "base_seed": seed,
             "seed": sig_seed,
             "beats_null_p05": bool(np.isfinite(d["p_empirical"])
                                    and d["p_empirical"] < 0.05),

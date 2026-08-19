@@ -88,6 +88,8 @@ def main() -> None:
     if perf is not None:
         mz = perf[(perf.method == "mean_z") & perf.auroc.notna()]
         ss = perf[(perf.method == "ssgsea") & perf.auroc.notna()]
+        pp = ROOT / "signatures" / "signature_provenance.csv"
+        prov = pd.read_csv(pp) if pp.exists() else None
         by_sig = mz.groupby("signature").auroc.mean().sort_values(ascending=False)
 
         out["performance"] = {
@@ -97,10 +99,37 @@ def main() -> None:
             "median_auroc": num(mz.auroc.median()),
             "frac_tests_below_0.55": num((mz.auroc < 0.55).mean()),
             "median_gene_coverage": num(mz.coverage.median()),
+            "mean_gene_coverage": num(mz.coverage.mean()),
             "best_signatures_mean_auroc": {
                 s: num(v) for s, v in by_sig.head(10).items()
             },
         }
+
+        # Sensitivity to the library's one duplicated gene set. Two named
+        # signatures share identical membership (a later publication
+        # re-evaluated an earlier 12-chemokine score rather than deriving a
+        # new set, see config/canonical_signatures.yaml), so the library is
+        # 102 NAMES over 101 DISTINCT sets and every aggregate weights that
+        # set twice. The effect is small, but a reader should not have to
+        # discover it, so both versions are reported.
+        dup_groups = (prov.groupby("gene_set_key").signature.apply(list)
+                      if prov is not None and "gene_set_key" in prov
+                      else None)
+        dups = ([g for g in dup_groups if len(g) > 1]
+                if dup_groups is not None else [])
+        if dups:
+            drop = {g[1] for g in dups}          # keep the first-named
+            dd = mz[~mz.signature.isin(drop)]
+            out["performance"]["duplicate_gene_sets"] = [sorted(g)
+                                                         for g in dups]
+            out["performance"]["n_distinct_gene_sets"] = int(
+                perf.signature.nunique() - len(drop))
+            out["performance"]["deduplicated"] = {
+                "n_tests_mean_z": int(len(dd)),
+                "mean_auroc": num(dd.auroc.mean()),
+                "median_auroc": num(dd.auroc.median()),
+                "frac_tests_below_0.55": num((dd.auroc < 0.55).mean()),
+            }
         if len(ss):
             j = (mz.groupby("signature").auroc.mean()
                  .to_frame("mean_z")
@@ -123,7 +152,15 @@ def main() -> None:
         out["null_calibration"] = {
             "n_signature_cohort_tests": int(len(null)),
             "n_draws_per_test": int(null.n_draws.max()),
-            "seed": int(null.seed.min()) if "seed" in null else None,
+            # The base seed from config, NOT a derived per-test seed. The
+            # `seed` column holds sig_seed = base + per-signature offset +
+            # per-cohort offset, so reporting min(seed) as "the seed" prints
+            # a number that appears nowhere in the configuration.
+            "seed": (int(null.base_seed.iloc[0]) if "base_seed" in null
+                     else None),
+            "seed_note": ("base seed; per-test seeds are derived "
+                          "deterministically and stored in the `seed` column "
+                          "of null_results.csv"),
             "frac_beating_null_p05": num(null.beats_null_p05.mean()),
             "frac_canonical_beating_null": num(canon.beats_null_p05.mean())
             if len(canon) else None,
