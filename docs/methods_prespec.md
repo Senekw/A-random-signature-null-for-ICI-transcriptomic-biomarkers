@@ -227,7 +227,49 @@ a post-hoc reassurance.
 
 ## 9. Deviations from the pre-specification
 
-None to date.
+Four, all corrections of implementation defects rather than changes of
+analytic intent. Each was found by a failing check and is covered by a test;
+`docs/reproduction_report.md` gives the effect of each on the headline
+numbers.
+
+**D1 — `scoring.min_genes_covered` lowered from 2 to 1.**
+A floor of 2 excluded the three single-gene checkpoint markers (PD-L1, PD-1,
+CTLA-4) from every cohort, although §4 of this document and the manuscript's
+Methods both name them among the 12 canonical predictors. The floor
+contradicted the pre-specified signature library, so the library governs.
+Effect: +45 canonical tests; the canonical null-beating rate and the
+alignment-regression signature count both change.
+
+**D2 — gene symbols harmonized to current NCBI official symbols
+(`expression.harmonize_symbols`, new).**
+Not a change of method but the removal of a silent one. The cohorts were
+processed against different GENCODE vintages, so a gene set written with
+retired symbols matched in some cohorts and vanished in others — meaning a
+signature's realized size, its size-matched null, and its meta-analysis
+weight depended on annotation vintage. §5's size-matching rule cannot be
+honoured without this. Mapping is applied only where an alias resolves
+unambiguously; ambiguous and unresolvable identifiers are left as-is and
+reported (`signatures/unmapped_genes.csv`). Effect: +8 evaluable tests.
+
+**D3 — random panel drawn once from the shared expressed universe rather
+than per cohort.**
+Per-cohort redrawing made the same panel column a different gene set in each
+cohort, so the leave-one-cohort-out model was applied to features unrelated
+to those it was fitted on. That measures nothing. Effect: the random-panel
+ceiling changes (see the reproduction report, which flags that neither
+construction reproduces the published value).
+
+**D4 — ESTIMATE purity mapped by within-cohort rank.**
+The purity transform is monotone only over a bounded argument range; the
+previous min–max mapping let one outlying sample push it outside that range,
+where the relationship between infiltration and purity inverts. Only the
+ranking is used by §7, and the rank mapping preserves it exactly. Effect:
+`corr(axis, tumor purity)` changes slightly; its sign and interpretation do
+not.
+
+No parameter was changed in order to move a number toward the manuscript.
+Where the pipeline and the paper disagree after these fixes, the
+disagreement is reported in `docs/reproduction_report.md`.
 
 Any change to §2–§8 after results existed belongs here, with the date, the
 change, the reason, and the effect on the headline numbers. An empty

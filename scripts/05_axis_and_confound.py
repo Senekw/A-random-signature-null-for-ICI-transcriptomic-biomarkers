@@ -176,8 +176,18 @@ def main() -> None:
     }).dropna()
 
     from scipy.stats import pearsonr
+
+    # The reference signature correlates 1.0 with itself by construction, so
+    # it contributes a fixed anchor point at the extreme of the x-range and
+    # inflates the fit slightly. Report the regression both with and without
+    # it; the headline is the self-excluded version, since "alignment to the
+    # axis predicts performance" should not be partly carried by the axis
+    # being perfectly aligned with itself.
+    venet["is_reference"] = venet.signature == ref
     r, p = pearsonr(venet.mean_corr_with_gep, venet.mean_auroc)
-    venet.attrs["r"] = r
+    ex = venet[~venet.is_reference]
+    r_ex, p_ex = pearsonr(ex.mean_corr_with_gep, ex.mean_auroc)
+    venet.attrs["r"] = r_ex
     venet.to_csv(res_dir / f"venet_alignment_{args.method}.csv", index=False)
 
     print(f"\nPC1 variance explained : mean {pca.pc1_var_explained.mean():.1%}, "
@@ -187,7 +197,9 @@ def main() -> None:
           f"{pca.pc1_corr_estimate_immune.mean():.2f}")
     print(f"PC1 vs tumor purity    : mean r = "
           f"{pca.pc1_corr_tumor_purity.mean():.2f}")
-    print(f"\nVenet test (n={len(venet)} signatures): "
+    print(f"\nVenet test, reference excluded (n={len(ex)}): "
+          f"r = {r_ex:.3f}, R^2 = {r_ex ** 2:.3f}, p = {p_ex:.2e}   [headline]")
+    print(f"Venet test, reference included (n={len(venet)}): "
           f"r = {r:.3f}, R^2 = {r ** 2:.3f}, p = {p:.2e}")
 
     pm = part.groupby("signature").agg(

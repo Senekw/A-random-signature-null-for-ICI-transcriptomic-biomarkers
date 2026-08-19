@@ -28,6 +28,11 @@ from .scoring import rank_matrix, ssgsea_score
 
 __all__ = ["estimate_gene_sets", "estimate_scores"]
 
+# Yoshihara et al. (Nat Commun 2013) purity transform: purity = cos(A + B*s),
+# monotone (decreasing) only while (A + B*s) lies in [0, pi].
+_PURITY_A = 0.6049872018
+_PURITY_B = 0.0001467884
+
 
 @lru_cache(maxsize=1)
 def estimate_gene_sets(path: str | None = None) -> tuple:
@@ -64,7 +69,7 @@ def estimate_scores(expr: pd.DataFrame, alpha: float = 0.25) -> pd.DataFrame:
     combined = imm + strm
 
     # Yoshihara et al. eq. relating the combined score to purity.
-    purity = np.cos(0.6049872018 + 0.0001467884 * _rescale(combined))
+    purity = np.cos(_PURITY_A + _PURITY_B * _rescale(combined))
 
     return pd.DataFrame({
         "immune_score": imm,
@@ -77,16 +82,64 @@ def estimate_scores(expr: pd.DataFrame, alpha: float = 0.25) -> pd.DataFrame:
 
 
 def _rescale(x: pd.Series) -> pd.Series:
-    """Map an ssGSEA-scale combined score onto the published score range.
+    """Map a combined ESTIMATE score onto the purity transform's domain.
 
-    The purity equation was fitted against ESTIMATE's own score scale.
-    ssGSEA scores computed on a different platform and gene universe are
-    on a different scale, so they are linearly mapped onto the published
-    range before the transform. This preserves sample ranking exactly --
-    the only property the analysis relies on -- while keeping purity in a
-    plausible interval.
+    Yoshihara et al.'s purity equation, ``cos(A + B*s)``, was fitted against
+    ESTIMATE's own score scale on Affymetrix arrays. ssGSEA scores computed
+    here, on RNA-seq over a different gene universe, are on a different
+    scale, so they must be mapped onto that domain first.
+
+    The mapping is by **within-cohort rank**, not by score value. Two
+    reasons:
+
+    1. ``cos`` is monotone only while its argument lies in ``[0, pi]``. A
+       value-based map has to be repaired to guarantee that, and a single
+       outlying sample can otherwise push the argument past ``pi``, where
+       the cosine turns back upward and the most-infiltrated samples are
+       reported as the *purest* -- silently inverting the relationship the
+       confound analysis exists to measure.
+    2. Cohort sizes here span 22 to 348 samples, so score extremes are not
+       comparable across cohorts. A rank map is unaffected by how extreme
+       an outlier is: an outlier is simply the last rank.
+
+    A rank map is strictly monotone and tie-free for distinct scores, so the
+    sample *ranking* -- the only property the manuscript's analysis uses --
+    is preserved exactly, and equal scores stay equal (average ranks).
+
+    Consequently the absolute values are **not** calibrated tumour-purity
+    estimates and should not be reported as percentages; they are a monotone
+    transform of the combined score, used for ranking and for the sign of
+    its correlation with the signature axis.
     """
-    lo, hi = float(np.nanmin(x)), float(np.nanmax(x))
-    if not np.isfinite(lo) or hi == lo:
-        return pd.Series(np.zeros(len(x)), index=x.index)
-    return (x - lo) / (hi - lo) * 6000.0 - 3000.0
+    v = pd.to_numeric(x, errors="coerce")
+    lo, hi = np.nanpercentile(v, 5), np.nanpercentile(v, 95)
+    if not np.isfinite(lo) or not np.isfinite(hi) or hi == lo:
+        # degenerate cohort (all-equal or unusably small): fall back to the
+        # full range, and to zeros only if that is degenerate too
+        lo, hi = float(np.nanmin(v)), float(np.nanmax(v))
+        if not np.isfinite(lo) or hi == lo:
+            return pd.Series(np.zeros(len(v)), index=v.index)
+    # The purity transform is cos(A + B*s), monotone only while its argument
+    # stays in [0, pi]. Past pi the cosine turns back up and the
+    # highest-scoring samples get reported as HIGH purity -- inverting the
+    # very relationship being measured.
+    #
+    # Rather than map the score range onto the argument range and then repair
+    # it, map RANKS directly: the sample ranking is the only property the
+    # analysis uses, and a rank map is by construction strictly monotone,
+    # tie-free for distinct scores, bounded inside the monotone branch, and
+    # completely insensitive to how extreme an outlier is -- an outlier is
+    # just the last rank. `lo`/`hi` above are retained only to document the
+    # published score scale this replaces.
+    del lo, hi
+
+    n = int(v.notna().sum())
+    if n < 2:
+        return pd.Series(np.zeros(len(v)), index=v.index)
+
+    # ranks in (0, 1), average-ranked so equal scores stay equal
+    u = v.rank(method="average", na_option="keep") / (n + 1.0)
+
+    margin = 0.02
+    arg = margin + u * (np.pi - 2.0 * margin)
+    return (arg - _PURITY_A) / _PURITY_B

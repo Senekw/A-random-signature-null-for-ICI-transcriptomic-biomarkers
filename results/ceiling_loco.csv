@@ -1,6 +1,7 @@
-predictor,n_features,loco_auroc,ci_low,ci_high
-gep_axis,1,0.6018162393162393,0.5550914502022886,0.6698390230588613
-estimate_immune,1,0.5873100664767331,,
-full_panel_plus_infiltration,99,0.581849477682811,,
-full_panel,98,0.5701566951566952,,
-random_panel,98,0.48946462488129155,,
+predictor,n_features,loco_auroc,ci_low,ci_high,standardization
+gep_axis_train_standardized,1,0.6053122032288699,0.5569196375655469,0.6736734740036286,training_cohorts
+gep_axis,1,0.6018162393162393,0.5550914502022886,0.6698390230588613,within_cohort
+estimate_immune,1,0.5874169040835707,,,within_cohort
+full_panel_plus_infiltration,102,0.576394824311491,,,
+full_panel,101,0.564025403608737,,,
+random_panel,102,0.5169990503323837,,,

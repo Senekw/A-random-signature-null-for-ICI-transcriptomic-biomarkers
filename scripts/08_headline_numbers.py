@@ -161,12 +161,18 @@ def main() -> None:
             })
         if ven is not None and len(ven) > 2:
             from scipy.stats import pearsonr
-            r, p = pearsonr(ven.mean_corr_with_gep, ven.mean_auroc)
+            # Headline excludes the reference signature, which correlates 1.0
+            # with itself by construction (see scripts/05_axis_and_confound.py).
+            ex = (ven[~ven.is_reference] if "is_reference" in ven else ven)
+            r, p = pearsonr(ex.mean_corr_with_gep, ex.mean_auroc)
+            r_in, p_in = pearsonr(ven.mean_corr_with_gep, ven.mean_auroc)
             block.update({
                 "venet_r": num(r),
                 "venet_r2": num(r ** 2),
                 "venet_p": None if not np.isfinite(p) else float(f"{p:.3g}"),
-                "venet_n_signatures": int(len(ven)),
+                "venet_n_signatures": int(len(ex)),
+                "venet_r2_reference_included": num(r_in ** 2),
+                "venet_n_signatures_reference_included": int(len(ven)),
             })
         out["single_axis"][method] = block
         out["provenance"][f"single_axis.{method}"] = (

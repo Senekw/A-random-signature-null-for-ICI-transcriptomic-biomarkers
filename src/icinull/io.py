@@ -143,6 +143,15 @@ def load_cohort(
     clin = pd.read_csv(d / f"{name}_clin.tsv", sep="\t", index_col="sample_id",
                        low_memory=False)
 
+    # Map the expression index onto current NCBI official symbols. The
+    # cohorts were processed against different GENCODE vintages, so without
+    # this a gene set written with legacy symbols matches in some cohorts and
+    # vanishes in others -- see icinull.symbols for the full rationale.
+    if cfg.get("expression", {}).get("harmonize_symbols", True):
+        from .symbols import harmonize_expression, load_symbol_map
+        official, alias = load_symbol_map()
+        expr, _ = harmonize_expression(expr, official, alias)
+
     common = [s for s in expr.columns if s in clin.index]
     expr = expr[common]
     clin = clin.loc[common]

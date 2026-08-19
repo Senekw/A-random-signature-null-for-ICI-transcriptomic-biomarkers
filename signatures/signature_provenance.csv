@@ -15,7 +15,7 @@ APM,APM,iobr,6,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR
 Antigen_Processing_and_Presentation_Li_et_al,Antigen Processing and Presentation Li et al,iobr,135,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
 Antimicrobials_Li_et_al,Antimicrobials Li et al,iobr,463,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
 BCR_Signaling_Pathway_Li_et_al,BCR Signaling Pathway Li et al,iobr,64,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-B_cells_Bindea_et_al,B cells Bindea et al,iobr,34,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
+B_cells_Bindea_et_al,B cells Bindea et al,iobr,33,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
 B_cells_Rooney_et_al,B cells Rooney et al,iobr,10,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
 CAF_Peng_et_al,CAF Peng et al,iobr,50,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
 CD8_Rooney_et_al,CD8 Rooney et al,iobr,5,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
@@ -80,7 +80,7 @@ TFH_Bindea_et_al,TFH Bindea et al,iobr,32,1,,"Zeng D, et al. IOBR. Front Immunol
 TGFb_Family_Member_Li_et_al,TGFb Family Member Li et al,iobr,33,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
 TGFb_Family_Member_Receptor_Li_et_al,TGFb Family Member Receptor Li et al,iobr,12,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
 TMEscoreA_CIR,TMEscoreA CIR,iobr,64,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
-TMEscoreB_CIR,TMEscoreB CIR,iobr,180,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
+TMEscoreB_CIR,TMEscoreB CIR,iobr,179,-1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
 TNF_Family_Members_Li_et_al,TNF Family Members Li et al,iobr,12,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
 TNF_Family_Members_Receptors_Li_et_al,TNF Family Members Receptors Li et al,iobr,19,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda
 T_cell_accumulation_Peng_et_al,T cell accumulation Peng et al,iobr,17,1,,"Zeng D, et al. IOBR. Front Immunol 2021;12:687975.",IOBR/IOBR:data/signature_collection.rda

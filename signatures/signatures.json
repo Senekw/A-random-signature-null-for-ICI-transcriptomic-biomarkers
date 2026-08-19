@@ -293,7 +293,7 @@
       "IFNA7",
       "IFNA8",
       "IFNG",
-      "KIAA0368",
+      "ECPAS",
       "KIR2DL1",
       "KIR2DL3",
       "KIR2DL4",
@@ -360,7 +360,10 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Antigen Processing and Presentation Li et al"
+    "label": "Antigen Processing and Presentation Li et al",
+    "symbols_updated": {
+      "KIAA0368": "ECPAS"
+    }
   },
   "Antimicrobials_Li_et_al": {
     "genes": [
@@ -476,7 +479,7 @@
       "DCD",
       "DCK",
       "DDX17",
-      "DDX58",
+      "RIGI",
       "DEFA1",
       "DEFA3",
       "DEFA4",
@@ -510,8 +513,8 @@
       "DEFB127",
       "DEFB128",
       "DEFB129",
-      "DEFB130",
-      "DEFB131",
+      "DEFB130A",
+      "DEFB131A",
       "DEFB132",
       "DEFB133",
       "DEFB134",
@@ -538,11 +541,11 @@
       "FABP6",
       "FABP7",
       "FABP9",
-      "FAM19A1",
-      "FAM19A2",
-      "FAM19A3",
-      "FAM19A4",
-      "FAM19A5",
+      "TAFA1",
+      "TAFA2",
+      "TAFA3",
+      "TAFA4",
+      "TAFA5",
       "FASLG",
       "FCN2",
       "FGA",
@@ -559,7 +562,7 @@
       "HCK",
       "HDAC1",
       "HFE",
-      "HFE2",
+      "HJV",
       "HGF",
       "HLA-B",
       "HMGB1",
@@ -716,7 +719,7 @@
       "PTK2B",
       "PTX3",
       "R3HDML",
-      "RARRES3",
+      "PLAAT4",
       "RBP1",
       "RBP2",
       "RBP4",
@@ -757,7 +760,7 @@
       "SFTPA1",
       "SFTPA2",
       "SFTPD",
-      "SKIV2L",
+      "SKIC2",
       "SLC11A1",
       "SLC22A17",
       "SLC29A3",
@@ -790,7 +793,7 @@
       "TLR4",
       "TLR7",
       "TLR8",
-      "TMEM173",
+      "STING1",
       "TMPRSS6",
       "TMSB10",
       "TMSB15A",
@@ -830,7 +833,21 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Antimicrobials Li et al"
+    "label": "Antimicrobials Li et al",
+    "symbols_updated": {
+      "DDX58": "RIGI",
+      "DEFB130": "DEFB130A",
+      "DEFB131": "DEFB131A",
+      "FAM19A1": "TAFA1",
+      "FAM19A2": "TAFA2",
+      "FAM19A3": "TAFA3",
+      "FAM19A4": "TAFA4",
+      "FAM19A5": "TAFA5",
+      "HFE2": "HJV",
+      "RARRES3": "PLAAT4",
+      "SKIV2L": "SKIC2",
+      "TMEM173": "STING1"
+    }
   },
   "BCR_Signaling_Pathway_Li_et_al": {
     "genes": [
@@ -927,7 +944,6 @@
       "IGHM",
       "IGKC",
       "IGLA",
-      "KIAA0125",
       "MEF2C",
       "MICAL3",
       "MS4A1",
@@ -942,7 +958,10 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "B cells Bindea et al"
+    "label": "B cells Bindea et al",
+    "symbols_updated": {
+      "KIAA0125": "FAM30A"
+    }
   },
   "B_cells_Rooney_et_al": {
     "genes": [
@@ -987,7 +1006,7 @@
       "CTSK",
       "CXCL1",
       "CXCL14",
-      "CYR61",
+      "CCN1",
       "DCN",
       "DKK3",
       "EFEMP1",
@@ -1016,7 +1035,10 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "CAF Peng et al"
+    "label": "CAF Peng et al",
+    "symbols_updated": {
+      "CYR61": "CCN1"
+    }
   },
   "CD8_Rooney_et_al": {
     "genes": [
@@ -1033,12 +1055,12 @@
   "CD8_T_cells_Bindea_et_al": {
     "genes": [
       "ABT1",
-      "AES",
+      "TLE5",
       "APBA2",
       "ARHGAP8",
-      "C12orf47",
-      "C19orf6",
-      "C4orf15",
+      "MAPKAPK5-AS1",
+      "TMEM259",
+      "HAUS3",
       "CAMLG",
       "CD8A",
       "CD8B",
@@ -1050,14 +1072,14 @@
       "KLF9",
       "LEPROTL1",
       "LIME1",
-      "MYST3",
+      "KAT6A",
       "PF4",
       "PPP1R2",
       "PRF1",
       "PRR5",
       "RBM3",
       "SF1",
-      "SFRS7",
+      "SRSF7",
       "SLC16A7",
       "TBCC",
       "THUMPD1",
@@ -1072,7 +1094,15 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "CD8 T cells Bindea et al"
+    "label": "CD8 T cells Bindea et al",
+    "symbols_updated": {
+      "AES": "TLE5",
+      "C12orf47": "MAPKAPK5-AS1",
+      "C19orf6": "TMEM259",
+      "C4orf15": "HAUS3",
+      "MYST3": "KAT6A",
+      "SFRS7": "SRSF7"
+    }
   },
   "CD_8_T_effector": {
     "genes": [
@@ -1335,7 +1365,7 @@
       "CXCL5",
       "CXCL6",
       "CXCL9",
-      "CYR61",
+      "CCN1",
       "DEFA1",
       "DEFA3",
       "DEFA5",
@@ -1387,24 +1417,31 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Chemokines Li et al"
+    "label": "Chemokines Li et al",
+    "symbols_updated": {
+      "CYR61": "CCN1"
+    }
   },
   "Co_inhibition_APC_Rooney_et_al": {
     "genes": [
-      "C10orf54",
+      "VSIR",
       "CD274",
       "LGALS9",
       "PDCD1LG2",
-      "PVRL3"
+      "NECTIN3"
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Co inhibition APC Rooney et al"
+    "label": "Co inhibition APC Rooney et al",
+    "symbols_updated": {
+      "C10orf54": "VSIR",
+      "PVRL3": "NECTIN3"
+    }
   },
   "Co_inhibition_T_cell_Rooney_et_al": {
     "genes": [
       "BTLA",
-      "C10orf54",
+      "VSIR",
       "CD160",
       "CD244",
       "CD274",
@@ -1416,7 +1453,10 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Co inhibition T cell Rooney et al"
+    "label": "Co inhibition T cell Rooney et al",
+    "symbols_updated": {
+      "C10orf54": "VSIR"
+    }
   },
   "Co_stimulation_APC_Rooney_et_al": {
     "genes": [
@@ -1586,8 +1626,8 @@
       "IL1R1",
       "IL1R2",
       "IL1RAP",
-      "IL1RL1",
-      "IL1RL2",
+      "IL33R",
+      "IL36R",
       "IL20RA",
       "IL20RB",
       "IL21R",
@@ -1755,7 +1795,11 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Cytokine Receptors Li et al"
+    "label": "Cytokine Receptors Li et al",
+    "symbols_updated": {
+      "IL1RL1": "IL33R",
+      "IL1RL2": "IL36R"
+    }
   },
   "Cytokines_Li_et_al": {
     "genes": [
@@ -1823,7 +1867,7 @@
       "CD320",
       "CD40LG",
       "CD70",
-      "CECR1",
+      "ADA2",
       "CER1",
       "CGA",
       "CGB1",
@@ -1856,7 +1900,7 @@
       "CSHL1",
       "CSPG5",
       "CTF1",
-      "CTGF",
+      "CCN2",
       "CTSG",
       "CX3CL1",
       "CXCL1",
@@ -1872,7 +1916,7 @@
       "CXCL5",
       "CXCL6",
       "CXCL9",
-      "CYR61",
+      "CCN1",
       "DEFA1",
       "DEFA3",
       "DEFA5",
@@ -2190,7 +2234,12 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Cytokines Li et al"
+    "label": "Cytokines Li et al",
+    "symbols_updated": {
+      "CECR1": "ADA2",
+      "CTGF": "CCN2",
+      "CYR61": "CCN1"
+    }
   },
   "Cytotoxic_cells_Bindea_et_al": {
     "genes": [
@@ -2209,12 +2258,15 @@
       "RORA",
       "RUNX3",
       "SIGIRR",
-      "WHDC1L1",
+      "WHAMMP3",
       "ZBTB16"
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Cytotoxic cells Bindea et al"
+    "label": "Cytotoxic cells Bindea et al",
+    "symbols_updated": {
+      "WHDC1L1": "WHAMMP3"
+    }
   },
   "DC_Bindea_et_al": {
     "genes": [
@@ -2288,7 +2340,7 @@
       "GTF2H3",
       "GTF2H4",
       "GTF2H5",
-      "H2AFX",
+      "H2AX",
       "HELQ",
       "HLTF",
       "HUS1",
@@ -2304,7 +2356,7 @@
       "MMS19",
       "MNAT1",
       "MPG",
-      "MRE11A",
+      "MRE11",
       "MSH2",
       "MSH3",
       "MSH4",
@@ -2401,7 +2453,11 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "DDR"
+    "label": "DDR",
+    "symbols_updated": {
+      "H2AFX": "H2AX",
+      "MRE11A": "MRE11"
+    }
   },
   "EMT1": {
     "genes": [
@@ -2449,7 +2505,7 @@
     "genes": [
       "A2M",
       "ACTB",
-      "ALIX",
+      "PDCD6IP",
       "B2M",
       "CD63",
       "CD81",
@@ -2473,25 +2529,28 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "EV Cell 2020"
+    "label": "EV Cell 2020",
+    "symbols_updated": {
+      "ALIX": "PDCD6IP"
+    }
   },
   "Eosinophils_Bindea_et_al": {
     "genes": [
       "ABHD2",
       "ACACB",
-      "C9orf156",
+      "TRMO",
       "CAT",
       "CCR3",
       "CLC",
       "CYSLTR2",
-      "EMR1",
+      "ADGRE1",
       "EPN2",
       "GALC",
-      "GPR44",
+      "PTGDR2",
       "HES1",
-      "HIST1H1C",
+      "H1-2",
       "HRH4",
-      "IGSF2",
+      "CD101",
       "IL5RA",
       "KBTBD11",
       "KCNH2",
@@ -2499,7 +2558,7 @@
       "MYO15B",
       "RCOR3",
       "RNASE2",
-      "RNU2",
+      "RNU2-1",
       "RRP12",
       "SIAH1",
       "SMPD3",
@@ -2512,7 +2571,15 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Eosinophils Bindea et al"
+    "label": "Eosinophils Bindea et al",
+    "symbols_updated": {
+      "C9orf156": "TRMO",
+      "EMR1": "ADGRE1",
+      "GPR44": "PTGDR2",
+      "HIST1H1C": "H1-2",
+      "IGSF2": "CD101",
+      "RNU2": "RNU2-1"
+    }
   },
   "Exhausted_CD8_Danaher_et_al": {
     "genes": [
@@ -2530,8 +2597,8 @@
       "ACSL4",
       "AKR1C1-3",
       "ALOXs",
-      "ATP5G3",
-      "CARS",
+      "ATP5MC3",
+      "CARS1",
       "CBS",
       "CD44v",
       "CHAC1",
@@ -2547,7 +2614,7 @@
       "HSPB1/5",
       "KOD",
       "LPCAT3",
-      "MESH1",
+      "HDDC3",
       "MT1G",
       "NCOA4",
       "NFE2L2",
@@ -2555,14 +2622,20 @@
       "RPL8",
       "SAT1",
       "SLC7A11",
-      "SQS",
+      "FDFT1",
       "TFRC",
       "TP53",
       "TTC35/EMC2"
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Ferroptosis"
+    "label": "Ferroptosis",
+    "symbols_updated": {
+      "ATP5G3": "ATP5MC3",
+      "CARS": "CARS1",
+      "MESH1": "HDDC3",
+      "SQS": "FDFT1"
+    }
   },
   "GPAGs": {
     "genes": [
@@ -2575,7 +2648,7 @@
       "CTNNB1",
       "CX3CR1",
       "CXCL12",
-      "CYR61",
+      "CCN1",
       "CYSLTR1",
       "ECSCR",
       "EGR3",
@@ -2599,25 +2672,34 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "GPAGs"
+    "label": "GPAGs",
+    "symbols_updated": {
+      "CYR61": "CCN1"
+    }
   },
   "Histones": {
     "genes": [
-      "HIST1H2AG",
-      "HIST1H2AI",
-      "HIST1H2BL",
-      "HIST2H2BF"
+      "H2AC11",
+      "H2AC13",
+      "H2BC13",
+      "H2BC18"
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "Histones"
+    "label": "Histones",
+    "symbols_updated": {
+      "HIST1H2AG": "H2AC11",
+      "HIST1H2AI": "H2AC13",
+      "HIST1H2BL": "H2BC13",
+      "HIST2H2BF": "H2BC18"
+    }
   },
   "Homologous_recombination": {
     "genes": [
       "BLM",
       "BRCA2",
       "EME1",
-      "MRE11A",
+      "MRE11",
       "MUS81",
       "NBN",
       "POLD1",
@@ -2645,7 +2727,10 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "Homologous recombination"
+    "label": "Homologous recombination",
+    "symbols_updated": {
+      "MRE11A": "MRE11"
+    }
   },
   "ICB_resistance_Peng_et_al": {
     "genes": [
@@ -2817,8 +2902,8 @@
       "IL1R1",
       "IL1R2",
       "IL1RAP",
-      "IL1RL1",
-      "IL1RL2",
+      "IL33R",
+      "IL36R",
       "IL20RA",
       "IL20RB",
       "IL21R",
@@ -2839,17 +2924,24 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Interleukins Receptor Li et al"
+    "label": "Interleukins Receptor Li et al",
+    "symbols_updated": {
+      "IL1RL1": "IL33R",
+      "IL1RL2": "IL36R"
+    }
   },
   "Lymph_vessels_Bindea_et_al": {
     "genes": [
-      "FIGF",
+      "VEGFD",
       "PDPN",
       "VEGFC"
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "Lymph vessels Bindea et al"
+    "label": "Lymph vessels Bindea et al",
+    "symbols_updated": {
+      "FIGF": "VEGFD"
+    }
   },
   "MDSC_Peng_et_al": {
     "genes": [
@@ -2883,7 +2975,7 @@
       "MAGEC2",
       "MOCOS",
       "MRGPRX3",
-      "OVOS2",
+      "OVOS2P",
       "PAGE5",
       "PMEPA1",
       "POPDC3",
@@ -2906,7 +2998,10 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "MDSC Peng et al"
+    "label": "MDSC Peng et al",
+    "symbols_updated": {
+      "OVOS2": "OVOS2P"
+    }
   },
   "MDSC_Wang_et_al": {
     "genes": [
@@ -3003,7 +3098,7 @@
       "FN1",
       "GM2A",
       "GPC4",
-      "KAL1",
+      "ANOS1",
       "MARCO",
       "ME1",
       "MS4A4A",
@@ -3018,11 +3113,14 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "Macrophages Bindea et al"
+    "label": "Macrophages Bindea et al",
+    "symbols_updated": {
+      "KAL1": "ANOS1"
+    }
   },
   "Macrophages_Rooney_et_al": {
     "genes": [
-      "C11orf45",
+      "KCNJ5-AS1",
       "CD68",
       "CLEC5A",
       "CYBB",
@@ -3035,7 +3133,10 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "Macrophages Rooney et al"
+    "label": "Macrophages Rooney et al",
+    "symbols_updated": {
+      "C11orf45": "KCNJ5-AS1"
+    }
   },
   "Mast_cells_Bindea_et_al": {
     "genes": [
@@ -3046,13 +3147,13 @@
       "CMA1",
       "CPA3",
       "CTSG",
-      "ELA2",
+      "ELANE",
       "GATA2",
       "HDC",
       "HPGD",
       "KIT",
       "LOC339524",
-      "LOH11CR2A",
+      "VWA5A",
       "MAOB",
       "MLPH",
       "MPO",
@@ -3073,7 +3174,11 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "Mast cells Bindea et al"
+    "label": "Mast cells Bindea et al",
+    "symbols_updated": {
+      "ELA2": "ELANE",
+      "LOH11CR2A": "VWA5A"
+    }
   },
   "Mismatch_Repair": {
     "genes": [
@@ -3115,7 +3220,7 @@
       "HNRNPA2B1",
       "HNRNPC",
       "IGF2BP1",
-      "KIAA1429",
+      "VIRMA",
       "LRPPRC",
       "METTL14",
       "METTL3",
@@ -3131,13 +3236,16 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Molecular Cancer m6A"
+    "label": "Molecular Cancer m6A",
+    "symbols_updated": {
+      "KIAA1429": "VIRMA"
+    }
   },
   "NK_CD56dim_cells_Bindea_et_al": {
     "genes": [
       "BG255923",
       "DUSP4",
-      "EDG8",
+      "S1PR5",
       "FLJ20699",
       "FOXJ1",
       "GTF3C1",
@@ -3154,16 +3262,21 @@
       "MADD",
       "MPPED1",
       "MUC3B",
-      "NIBP",
+      "TRAPPC9",
       "PLA2G6",
       "RRAD",
       "SPON2",
-      "TMEPAI",
+      "PMEPA1",
       "XCL1"
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "NK CD56dim cells Bindea et al"
+    "label": "NK CD56dim cells Bindea et al",
+    "symbols_updated": {
+      "EDG8": "S1PR5",
+      "NIBP": "TRAPPC9",
+      "TMEPAI": "PMEPA1"
+    }
   },
   "NK_CD56dim_cells_Danaher_et_al": {
     "genes": [
@@ -3182,7 +3295,7 @@
       "AF107846",
       "AL080130",
       "ALDH1B1",
-      "ARL6IP2",
+      "ATL2",
       "BCL2",
       "CDC5L",
       "FGF18",
@@ -3205,7 +3318,7 @@
       "PSMD4",
       "RP5-886K2.1",
       "SLC30A5",
-      "SMEK1",
+      "PPP4R3A",
       "SPN",
       "TBXA2R",
       "TCTN2",
@@ -3218,7 +3331,11 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "NK cells Bindea et al"
+    "label": "NK cells Bindea et al",
+    "symbols_updated": {
+      "ARL6IP2": "ATL2",
+      "SMEK1": "PPP4R3A"
+    }
   },
   "NK_cells_Danaher_et_al": {
     "genes": [
@@ -3410,14 +3527,14 @@
       "FCGR3B",
       "FLJ11151",
       "FPR1",
-      "FPRL1",
+      "FPR2",
       "G0S2",
       "HIST1H2BC",
       "HPSE",
       "IL8RA",
-      "IL8RB",
+      "CXCR2",
       "KCNJ15",
-      "KIAA0329",
+      "TECPR2",
       "LILRB2",
       "MGAM",
       "MME",
@@ -3427,11 +3544,17 @@
       "SLC22A4",
       "SLC25A37",
       "TNFRSF10C",
-      "VNN3"
+      "VNN3P"
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "Neutrophils Bindea et al"
+    "label": "Neutrophils Bindea et al",
+    "symbols_updated": {
+      "FPRL1": "FPR2",
+      "IL8RB": "CXCR2",
+      "KIAA0329": "TECPR2",
+      "VNN3": "VNN3P"
+    }
   },
   "Neutrophils_Rooney_et_al": {
     "genes": [
@@ -3444,11 +3567,14 @@
       "PADI4",
       "SELL",
       "TRANK1",
-      "VNN3"
+      "VNN3P"
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "Neutrophils Rooney et al"
+    "label": "Neutrophils Rooney et al",
+    "symbols_updated": {
+      "VNN3": "VNN3P"
+    }
   },
   "Normal_mucosa_Bindea_et_al": {
     "genes": [
@@ -3477,7 +3603,7 @@
       "MYH11",
       "MYLK",
       "NFIB",
-      "PPAP2B",
+      "PLPP3",
       "RGS5",
       "SPARCL1",
       "TAGLN",
@@ -3487,7 +3613,10 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "Normal mucosa Bindea et al"
+    "label": "Normal mucosa Bindea et al",
+    "symbols_updated": {
+      "PPAP2B": "PLPP3"
+    }
   },
   "PPAGs": {
     "genes": [
@@ -3502,7 +3631,7 @@
       "EPHB3",
       "ERBB2",
       "GPI",
-      "GPR56",
+      "ADGRG1",
       "IL18",
       "ITGA5",
       "MED1",
@@ -3521,7 +3650,10 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "PPAGs"
+    "label": "PPAGs",
+    "symbols_updated": {
+      "GPR56": "ADGRG1"
+    }
   },
   "Pan_F_TBRs": {
     "genes": [
@@ -3531,9 +3663,9 @@
       "ADAM19",
       "CNN1",
       "COL4A1",
-      "CTGF",
+      "CCN2",
       "CTPS1",
-      "FAM101B",
+      "RFLNB",
       "FSTL3",
       "HSPB1",
       "IGFBP3",
@@ -3547,7 +3679,11 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "Pan F TBRs"
+    "label": "Pan F TBRs",
+    "symbols_updated": {
+      "CTGF": "CCN2",
+      "FAM101B": "RFLNB"
+    }
   },
   "Positive_regulation_of_exosomal_secretion": {
     "genes": [
@@ -3596,7 +3732,7 @@
       "MFAP2",
       "NM_024609",
       "NTSR1",
-      "PCTK1",
+      "CDK16",
       "RBP1",
       "RHOD",
       "RPP25",
@@ -3612,7 +3748,10 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "SW480 cancer cells Bindea et al"
+    "label": "SW480 cancer cells Bindea et al",
+    "symbols_updated": {
+      "PCTK1": "CDK16"
+    }
   },
   "TAM_Peng_et_al": {
     "genes": [
@@ -3634,7 +3773,7 @@
       "ESPNL",
       "F13A1",
       "FABP4",
-      "FAM189A2",
+      "ENTREP1",
       "FCER1A",
       "FOXQ1",
       "GALNT18",
@@ -3669,7 +3808,10 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "TAM Peng et al"
+    "label": "TAM Peng et al",
+    "symbols_updated": {
+      "FAM189A2": "ENTREP1"
+    }
   },
   "TCR_signaling_Pathway_Li_et_al": {
     "genes": [
@@ -3773,20 +3915,20 @@
   "TFH_Bindea_et_al": {
     "genes": [
       "B3GAT1",
-      "BLR1",
-      "C18orf1",
+      "CXCR5",
+      "LDLRAD4",
       "CDK5R1",
       "CHGB",
       "CHI3L2",
       "CXCL13",
       "HEY1",
-      "HIST1H4K",
+      "H4C12",
       "ICA1",
       "KCNK5",
-      "KIAA1324",
+      "ELAPOR1",
       "MAF",
       "MAGEH1",
-      "MKL2",
+      "MRTFB",
       "MYO6",
       "MYO7A",
       "PASK",
@@ -3807,7 +3949,14 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "TFH Bindea et al"
+    "label": "TFH Bindea et al",
+    "symbols_updated": {
+      "BLR1": "CXCR5",
+      "C18orf1": "LDLRAD4",
+      "HIST1H4K": "H4C12",
+      "KIAA1324": "ELAPOR1",
+      "MKL2": "MRTFB"
+    }
   },
   "TGFb_Family_Member_Li_et_al": {
     "genes": [
@@ -3906,7 +4055,7 @@
       "KIF18A",
       "KLRC2",
       "LOC100509457",
-      "MB21D1",
+      "CGAS",
       "MCEMP1",
       "MICB",
       "MMP9",
@@ -3930,14 +4079,18 @@
       "TRIM22",
       "TYMP",
       "UBD",
-      "WARS",
+      "WARS1",
       "WDHD1",
       "ZBED2",
       "ZNF367"
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "TMEscoreA CIR"
+    "label": "TMEscoreA CIR",
+    "symbols_updated": {
+      "MB21D1": "CGAS",
+      "WARS": "WARS1"
+    }
   },
   "TMEscoreB_CIR": {
     "genes": [
@@ -3963,7 +4116,7 @@
       "BEX3",
       "C11orf96",
       "C14orf132",
-      "C2orf40",
+      "ECRG4",
       "C3orf70",
       "CAV1",
       "CCDC80",
@@ -4014,7 +4167,6 @@
       "HSPB8",
       "JAM3",
       "LDOC1",
-      "LINC01279",
       "LOC100506718",
       "LOC100507334",
       "LOC101930349",
@@ -4031,7 +4183,7 @@
       "MGP",
       "MIR100HG",
       "MRGPRF",
-      "MRVI1",
+      "IRAG1",
       "MSRB3",
       "MXRA7",
       "MYEF2",
@@ -4062,7 +4214,7 @@
       "PRKD1",
       "PROS1",
       "PSD3",
-      "PTRF",
+      "CAVIN1",
       "RAI2",
       "RBM24",
       "RBP1",
@@ -4073,8 +4225,8 @@
       "RUNX1T1",
       "SCIN",
       "SCRG1",
-      "SELM",
-      "SEPP1",
+      "SELENOM",
+      "SELENOP",
       "SERP2",
       "SERPINE2",
       "SETBP1",
@@ -4102,7 +4254,7 @@
       "TMEM100",
       "TMEM150C",
       "TMEM47",
-      "TMEM55A",
+      "PIP4P2",
       "TNC",
       "TNS1",
       "TRHDE",
@@ -4124,7 +4276,16 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "TMEscoreB CIR"
+    "label": "TMEscoreB CIR",
+    "symbols_updated": {
+      "C2orf40": "ECRG4",
+      "LINC01279": "CCDC80",
+      "MRVI1": "IRAG1",
+      "PTRF": "CAVIN1",
+      "SELM": "SELENOM",
+      "SEPP1": "SELENOP",
+      "TMEM55A": "PIP4P2"
+    }
   },
   "TNF_Family_Members_Li_et_al": {
     "genes": [
@@ -4176,7 +4337,7 @@
       "BTG2",
       "CBLB",
       "CCL1",
-      "CXorf56",
+      "STEEP1",
       "DGKA",
       "DGKZ",
       "EGR2",
@@ -4193,14 +4354,17 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "T cell accumulation Peng et al"
+    "label": "T cell accumulation Peng et al",
+    "symbols_updated": {
+      "CXorf56": "STEEP1"
+    }
   },
   "T_cell_exhaustion_Peng_et_al": {
     "genes": [
       "ABCB1",
       "ABI3",
       "ADRB2",
-      "ADSSL1",
+      "ADSS1",
       "BCKDHB",
       "BTG1",
       "C1QC",
@@ -4218,7 +4382,7 @@
       "DSEL",
       "DUSP1",
       "DUSP26",
-      "FAM196B",
+      "INSYN2B",
       "FOSB",
       "HSPA1A",
       "HSPA1B",
@@ -4250,7 +4414,11 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "T cell exhaustion Peng et al"
+    "label": "T cell exhaustion Peng et al",
+    "symbols_updated": {
+      "ADSSL1": "ADSS1",
+      "FAM196B": "INSYN2B"
+    }
   },
   "T_cell_regulatory_Peng_et_al": {
     "genes": [
@@ -4266,8 +4434,8 @@
       "CXCL10",
       "DUSP4",
       "ECM1",
-      "FAM129A",
-      "FAM160A1",
+      "NIBAN1",
+      "FHIP1A",
       "FOXP3",
       "GPR52",
       "GPR83",
@@ -4307,7 +4475,11 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "T cell regulatory Peng et al"
+    "label": "T cell regulatory Peng et al",
+    "symbols_updated": {
+      "FAM129A": "NIBAN1",
+      "FAM160A1": "FHIP1A"
+    }
   },
   "T_cells_Bindea_et_al": {
     "genes": [
@@ -4340,12 +4512,12 @@
       "ASF1A",
       "ATF2",
       "BATF",
-      "C13orf34",
+      "BORA",
       "CD28",
       "DDX50",
       "FAM111A",
       "FRYL",
-      "FUSIP1",
+      "SRSF10",
       "GOLGA8A",
       "ICOS",
       "ITM2A",
@@ -4362,7 +4534,11 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "T helper cells Bindea et al"
+    "label": "T helper cells Bindea et al",
+    "symbols_updated": {
+      "C13orf34": "BORA",
+      "FUSIP1": "SRSF10"
+    }
   },
   "Tcm_Bindea_et_al": {
     "genes": [
@@ -4372,25 +4548,25 @@
       "CASP8",
       "CDC14A",
       "CEP68",
-      "CG030",
-      "CLUAP1",
+      "N4BP2L2-IT2",
+      "IFT38",
       "CREBZF",
       "CYLD",
-      "CYorf15B",
+      "TXLNGY",
       "DOCK9",
       "FOXP1",
-      "FYB",
-      "HNRPH1",
+      "FYB1",
+      "HNRNPH1",
       "INPP4B",
       "KLF12",
       "LOC202134",
       "MAP3K1",
-      "MLL",
+      "KMT2A",
       "NEFL",
       "NFATC3",
       "PCM1",
-      "PCNX",
-      "PDXDC2",
+      "PCNX1",
+      "PDXDC2P",
       "PHC3",
       "POLR2J2",
       "PSPC1",
@@ -4408,12 +4584,22 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Tcm Bindea et al"
+    "label": "Tcm Bindea et al",
+    "symbols_updated": {
+      "CG030": "N4BP2L2-IT2",
+      "CLUAP1": "IFT38",
+      "CYorf15B": "TXLNGY",
+      "FYB": "FYB1",
+      "HNRPH1": "HNRNPH1",
+      "MLL": "KMT2A",
+      "PCNX": "PCNX1",
+      "PDXDC2": "PDXDC2P"
+    }
   },
   "Tem_Bindea_et_al": {
     "genes": [
       "AKT3",
-      "C7orf54",
+      "SND1-IT1",
       "CCR2",
       "DDX17",
       "EWSR1",
@@ -4426,15 +4612,19 @@
       "TBC1D5",
       "TBCD",
       "TRAA",
-      "VIL2"
+      "EZR"
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Tem Bindea et al"
+    "label": "Tem Bindea et al",
+    "symbols_updated": {
+      "C7orf54": "SND1-IT1",
+      "VIL2": "EZR"
+    }
   },
   "Tgd_Bindea_et_al": {
     "genes": [
-      "C1orf61",
+      "MIR9-1HG",
       "CD160",
       "FEZ1",
       "TARP",
@@ -4443,7 +4633,10 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Tgd Bindea et al"
+    "label": "Tgd Bindea et al",
+    "symbols_updated": {
+      "C1orf61": "MIR9-1HG"
+    }
   },
   "Th17_cells_Bindea_et_al": {
     "genes": [
@@ -4465,7 +4658,7 @@
       "CCL4",
       "CD38",
       "CD70",
-      "CMAH",
+      "CMAHP",
       "CSF2",
       "CTLA4",
       "DGKI",
@@ -4487,7 +4680,10 @@
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "Th1 cells Bindea et al"
+    "label": "Th1 cells Bindea et al",
+    "symbols_updated": {
+      "CMAH": "CMAHP"
+    }
   },
   "Th2_cells_Bindea_et_al": {
     "genes": [
@@ -4525,7 +4721,7 @@
   },
   "Treg_Rooney_et_al": {
     "genes": [
-      "C15orf53",
+      "LINC02694",
       "CTLA4",
       "FOXP3",
       "GPR15",
@@ -4535,7 +4731,10 @@
     ],
     "direction": -1,
     "collection": "iobr",
-    "label": "Treg Rooney et al"
+    "label": "Treg Rooney et al",
+    "symbols_updated": {
+      "C15orf53": "LINC02694"
+    }
   },
   "Type_II_IFN_Reponse_Rooney_et_al": {
     "genes": [
@@ -4579,13 +4778,16 @@
     "genes": [
       "CCL1",
       "EBI3",
-      "INDO",
+      "IDO1",
       "LAMP3",
       "OAS3"
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "aDC Bindea et al"
+    "label": "aDC Bindea et al",
+    "symbols_updated": {
+      "INDO": "IDO1"
+    }
   },
   "iDC_Bindea_et_al": {
     "genes": [
@@ -4618,12 +4820,15 @@
       "SLC7A8",
       "SYT17",
       "TACSTD2",
-      "TM7SF4",
+      "DCSTAMP",
       "VASH1"
     ],
     "direction": 1,
     "collection": "iobr",
-    "label": "iDC Bindea et al"
+    "label": "iDC Bindea et al",
+    "symbols_updated": {
+      "TM7SF4": "DCSTAMP"
+    }
   },
   "pDCs_Rooney_et_al": {
     "genes": [

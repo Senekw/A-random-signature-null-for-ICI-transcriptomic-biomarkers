@@ -57,114 +57,119 @@
   },
   "performance": {
     "n_signatures": 102,
-    "n_tests_mean_z": 1396,
-    "mean_auroc": 0.539616,
-    "median_auroc": 0.540445,
-    "frac_tests_below_0.55": 0.533668,
+    "n_tests_mean_z": 1470,
+    "mean_auroc": 0.540439,
+    "median_auroc": 0.538472,
+    "frac_tests_below_0.55": 0.534014,
     "median_gene_coverage": 1.0,
     "best_signatures_mean_auroc": {
       "CD_8_T_effector": 0.646779,
-      "T_cell_inflamed_GEP_Ayers_et_al": 0.642745,
+      "Chemokine12_Messina": 0.638793,
+      "TLS_12chemokine_Prabhakaran": 0.638793,
       "IFNG_6gene_Ayers": 0.638514,
-      "TLS_12chemokine_Prabhakaran": 0.633826,
-      "Chemokine12_Messina": 0.633826,
       "Cytolytic_Activity_Rooney_et_al": 0.633368,
       "CD8_Rooney_et_al": 0.632927,
-      "Co_inhibition_T_cell_Rooney_et_al": 0.630988,
       "Roh_immune": 0.630866,
-      "MHC_Class_I_Rooney_et_al": 0.629808
+      "MHC_Class_I_Rooney_et_al": 0.629808,
+      "T_cells_Bindea_et_al": 0.629403,
+      "Co_inhibition_T_cell_Rooney_et_al": 0.629257
     },
-    "scoring_method_pearson_r": 0.942369,
-    "scoring_method_spearman_rho": 0.940074
+    "scoring_method_pearson_r": 0.93575,
+    "scoring_method_spearman_rho": 0.936036
   },
   "null_calibration": {
-    "n_signature_cohort_tests": 1396,
+    "n_signature_cohort_tests": 1470,
     "n_draws_per_test": 1000,
-    "seed": 20260714,
-    "frac_beating_null_p05": 0.270774,
-    "frac_canonical_beating_null": 0.563492,
-    "median_observed_auroc": 0.540425,
-    "median_null_q95": 0.617867,
-    "mean_observed_auroc": 0.539855,
-    "mean_null_auroc": 0.497026,
-    "mean_advantage_over_null": 0.042829,
+    "seed": 20260719,
+    "frac_beating_null_p05": 0.272109,
+    "frac_canonical_beating_null": 0.50289,
+    "median_observed_auroc": 0.538889,
+    "median_null_q95": 0.620833,
+    "mean_observed_auroc": 0.540714,
+    "mean_null_auroc": 0.497024,
+    "mean_advantage_over_null": 0.043676,
     "null_beating_rate_by_cohort": {
-      "Nathanson": 0.030612,
-      "Miao1": 0.080808,
-      "Braun": 0.131313,
-      "Hugo": 0.153061,
-      "Limagne2": 0.153061,
-      "Limagne1": 0.163265,
-      "Van_Allen": 0.20202,
-      "VanDenEnde": 0.25,
-      "Puch": 0.272727,
-      "Mariathasan": 0.336735,
-      "Kim": 0.397959,
-      "Riaz": 0.418367,
-      "Jung": 0.469388,
-      "Liu": 0.469388,
-      "Gide": 0.520408
+      "Nathanson": 0.039216,
+      "Miao1": 0.058824,
+      "Braun": 0.107843,
+      "Hugo": 0.147059,
+      "Limagne1": 0.176471,
+      "Limagne2": 0.176471,
+      "VanDenEnde": 0.204545,
+      "Van_Allen": 0.205882,
+      "Puch": 0.27451,
+      "Mariathasan": 0.306931,
+      "Riaz": 0.411765,
+      "Kim": 0.441176,
+      "Jung": 0.470588,
+      "Liu": 0.475248,
+      "Gide": 0.54902
     },
     "null_beating_range": [
-      0.030612,
-      0.520408
+      0.039216,
+      0.54902
     ],
-    "n_signatures_fdr05_positive": 54,
-    "n_signatures_pooled": 99
+    "n_signatures_fdr05_positive": 57,
+    "n_signatures_pooled": 102
   },
   "single_axis": {
     "mean_z": {
-      "pc1_var_explained_mean": 0.562539,
-      "pc1_var_explained_max": 0.765252,
-      "pc1_corr_gep_mean": 0.828567,
-      "venet_r": 0.823571,
-      "venet_r2": 0.678269,
-      "venet_p": 1.27e-25,
-      "venet_n_signatures": 99
+      "pc1_var_explained_mean": 0.541894,
+      "pc1_var_explained_max": 0.747156,
+      "pc1_corr_gep_mean": 0.828793,
+      "venet_r": 0.810136,
+      "venet_r2": 0.65632,
+      "venet_p": 1.08e-24,
+      "venet_n_signatures": 101,
+      "venet_r2_reference_included": 0.661836,
+      "venet_n_signatures_reference_included": 102
     },
     "ssgsea": {
-      "pc1_var_explained_mean": 0.428207,
-      "pc1_var_explained_max": 0.606214,
-      "pc1_corr_gep_mean": 0.873912,
-      "venet_r": 0.9406,
-      "venet_r2": 0.884729,
-      "venet_p": 2.67e-47,
-      "venet_n_signatures": 99
+      "pc1_var_explained_mean": 0.417416,
+      "pc1_var_explained_max": 0.598791,
+      "pc1_corr_gep_mean": 0.870465,
+      "venet_r": 0.943565,
+      "venet_r2": 0.890314,
+      "venet_p": 2.6e-49,
+      "venet_n_signatures": 101,
+      "venet_r2_reference_included": 0.89209,
+      "venet_n_signatures_reference_included": 102
     }
   },
   "confound": {
-    "axis_corr_estimate_immune_mean": 0.622287,
-    "axis_corr_tumor_purity_mean": -0.631413,
-    "mean_auroc_raw": 0.539141,
-    "mean_auroc_after_removing_infiltration": 0.510916,
-    "best10_mean_auroc": 0.635365
+    "axis_corr_estimate_immune_mean": 0.621747,
+    "axis_corr_tumor_purity_mean": -0.629427,
+    "mean_auroc_raw": 0.540693,
+    "mean_auroc_after_removing_infiltration": 0.511491,
+    "best10_mean_auroc": 0.634851
   },
   "meta_analysis": {
-    "n_meta_analyzable": 97,
+    "n_meta_analyzable": 99,
     "best_signature": "IFNG_6gene_Ayers",
     "best_pooled_auroc": 0.626776,
     "best_ci": [
       0.549819,
       0.697808
     ],
-    "n_ci_excluding_0.5": 29,
-    "median_I2": 16.129576,
-    "median_tau2": 0.021836
+    "n_ci_excluding_0.5": 32,
+    "median_I2": 15.178295,
+    "median_tau2": 0.020317
   },
   "ceiling": {
     "loco_auroc": {
+      "gep_axis_train_standardized": 0.605312,
       "gep_axis": 0.601816,
-      "estimate_immune": 0.58731,
-      "full_panel_plus_infiltration": 0.581849,
-      "full_panel": 0.570157,
-      "random_panel": 0.489465
+      "estimate_immune": 0.587417,
+      "full_panel_plus_infiltration": 0.576395,
+      "full_panel": 0.564025,
+      "random_panel": 0.516999
     },
     "gep_axis_ci": [
       0.555091,
       0.669839
     ],
-    "in_cohort_best_selected": 0.763321,
-    "within_cohort_cv_panel": 0.61843,
-    "optimism_gap": 0.161504
+    "in_cohort_best_selected": 0.76447,
+    "within_cohort_cv_panel": 0.621894,
+    "optimism_gap": 0.162654
   }
 }

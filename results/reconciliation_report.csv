@@ -4,35 +4,35 @@ response-labeled patients,cohorts.n_response_labeled,905.0,905.0,0.0,0.0,ok,Abst
 patients with OS,cohorts.n_with_os,862.0,862.0,0.0,0.0,ok,
 cancer types,cohorts.n_cancer_types,6.0,6.0,0.0,0.0,ok,Abstract: 6 cancer types.
 signatures in library,performance.n_signatures,102.0,102.0,0.0,0.0,ok,
-signature x cohort tests,null_calibration.n_signature_cohort_tests,1463.0,1396.0,-67.0,0.0,MOVED,Abstract. Depends on gene-coverage guard; a shift means the coverage rule or a cohort's gene annotation differs.
-median signature AUROC,performance.median_auroc,0.548,0.540445,-0.007555000000000089,0.01,ok,Abstract. Deterministic; tolerance covers float/version drift only.
-mean signature AUROC,performance.mean_auroc,0.549,0.539616,-0.009384000000000059,0.01,ok,Results line 86: mean across signatures and cohorts 0.549.
-frac tests below AUROC 0.55,performance.frac_tests_below_0.55,0.51,0.533668,0.023668000000000022,0.02,MOVED,Results line 86: 51% of tests fell below 0.55.
-scoring-method Pearson r,performance.scoring_method_pearson_r,0.94,0.942369,0.0023690000000000655,0.03,ok,Abstract and Figure 8A.
-scoring-method Spearman rho,performance.scoring_method_spearman_rho,0.93,0.940074,0.010073999999999916,0.03,ok,Results line 173.
-frac tests beating null,null_calibration.frac_beating_null_p05,0.305,0.270774,-0.03422599999999998,0.025,MOVED,"Abstract. 1000 draws -> MC error ~0.015 on a per-test p; the aggregate over 1463 tests is tighter, but seed and draw count both move it. A shift beyond 0.025 is not Monte-Carlo noise."
-canonical predictors beating null,null_calibration.frac_canonical_beating_null,0.445,0.563492,0.11849199999999999,0.04,MOVED,"Abstract. Only 12 signatures x cohorts, so noisier."
-median null 95th percentile,null_calibration.median_null_q95,0.621,0.617867,-0.0031329999999999414,0.015,ok,
-median observed AUROC (null table),null_calibration.median_observed_auroc,0.548,0.540425,-0.007574999999999998,0.01,ok,
-PC1 variance explained (mean),single_axis.mean_z.pc1_var_explained_mean,0.55,0.562539,0.012538999999999967,0.03,ok,Abstract and Figure 4A: mean 55% per cohort.
-PC1 variance explained (max),single_axis.mean_z.pc1_var_explained_max,0.76,0.765252,0.005252000000000034,0.04,ok,Results line 111: up to 76%.
-"corr(PC1, T-cell-inflamed GEP)",single_axis.mean_z.pc1_corr_gep_mean,0.79,0.828567,0.03856700000000002,0.03,MOVED,
-Venet R-squared,single_axis.mean_z.venet_r2,0.63,0.678269,0.048269000000000006,0.04,MOVED,Abstract and Figure 4C.
-Venet Pearson r,single_axis.mean_z.venet_r,0.79,0.823571,0.03357100000000002,0.03,MOVED,Results line 117.
-Venet R-squared under ssGSEA,single_axis.ssgsea.venet_r2,0.81,0.884729,0.07472899999999993,0.05,MOVED,Results line 173: collapse stronger under ssGSEA.
-"corr(axis, ESTIMATE immune)",confound.axis_corr_estimate_immune_mean,0.63,0.622287,-0.00771299999999997,0.04,ok,
-"corr(axis, tumor purity)",confound.axis_corr_tumor_purity_mean,-0.68,-0.631413,0.04858700000000005,0.04,MOVED,
-mean AUROC after removing infiltration,confound.mean_auroc_after_removing_infiltration,0.503,0.510916,0.007916000000000034,0.015,ok,Results line 133: collapsed to chance. This is a load-bearing claim -- if it lands materially above 0.51 the 'operationally infiltration detectors' sentence weakens.
-best-10 mean AUROC,confound.best10_mean_auroc,0.64,0.635365,-0.004635000000000056,0.015,ok,Results line 132.
-signatures meta-analyzable,meta_analysis.n_meta_analyzable,100.0,97.0,-3.0,0.0,MOVED,Results line 147: 32 of 100 meta-analyzable.
-pooled CIs excluding 0.5,meta_analysis.n_ci_excluding_0.5,32.0,29.0,-3.0,1.0,MOVED,Results line 147. Tolerance 1 for boundary CIs.
+signature x cohort tests,null_calibration.n_signature_cohort_tests,1463.0,1470.0,7.0,0.0,MOVED,Abstract. Depends on gene-coverage guard; a shift means the coverage rule or a cohort's gene annotation differs.
+median signature AUROC,performance.median_auroc,0.548,0.538472,-0.009528000000000092,0.01,ok,Abstract. Deterministic; tolerance covers float/version drift only.
+mean signature AUROC,performance.mean_auroc,0.549,0.540439,-0.00856100000000004,0.01,ok,Results line 86: mean across signatures and cohorts 0.549.
+frac tests below AUROC 0.55,performance.frac_tests_below_0.55,0.51,0.534014,0.02401399999999998,0.02,MOVED,Results line 86: 51% of tests fell below 0.55.
+scoring-method Pearson r,performance.scoring_method_pearson_r,0.94,0.93575,-0.004249999999999976,0.03,ok,Abstract and Figure 8A.
+scoring-method Spearman rho,performance.scoring_method_spearman_rho,0.93,0.936036,0.00603599999999993,0.03,ok,Results line 173.
+frac tests beating null,null_calibration.frac_beating_null_p05,0.305,0.272109,-0.032891000000000004,0.025,MOVED,"Abstract. 1000 draws -> MC error ~0.015 on a per-test p; the aggregate over 1463 tests is tighter, but seed and draw count both move it. A shift beyond 0.025 is not Monte-Carlo noise."
+canonical predictors beating null,null_calibration.frac_canonical_beating_null,0.445,0.50289,0.05788999999999994,0.04,MOVED,"Abstract. Only 12 signatures x cohorts, so noisier."
+median null 95th percentile,null_calibration.median_null_q95,0.621,0.620833,-0.00016700000000002824,0.015,ok,
+median observed AUROC (null table),null_calibration.median_observed_auroc,0.548,0.538889,-0.009111000000000091,0.01,ok,
+PC1 variance explained (mean),single_axis.mean_z.pc1_var_explained_mean,0.55,0.541894,-0.008106000000000058,0.03,ok,Abstract and Figure 4A: mean 55% per cohort.
+PC1 variance explained (max),single_axis.mean_z.pc1_var_explained_max,0.76,0.747156,-0.012843999999999967,0.04,ok,Results line 111: up to 76%.
+"corr(PC1, T-cell-inflamed GEP)",single_axis.mean_z.pc1_corr_gep_mean,0.79,0.828793,0.038792999999999966,0.03,MOVED,
+Venet R-squared,single_axis.mean_z.venet_r2,0.63,0.65632,0.02632000000000001,0.04,ok,Abstract and Figure 4C.
+Venet Pearson r,single_axis.mean_z.venet_r,0.79,0.810136,0.02013599999999993,0.03,ok,Results line 117.
+Venet R-squared under ssGSEA,single_axis.ssgsea.venet_r2,0.81,0.890314,0.080314,0.05,MOVED,Results line 173: collapse stronger under ssGSEA.
+"corr(axis, ESTIMATE immune)",confound.axis_corr_estimate_immune_mean,0.63,0.621747,-0.008252999999999955,0.04,ok,
+"corr(axis, tumor purity)",confound.axis_corr_tumor_purity_mean,-0.68,-0.629427,0.05057300000000009,0.04,MOVED,
+mean AUROC after removing infiltration,confound.mean_auroc_after_removing_infiltration,0.503,0.511491,0.008491000000000026,0.015,ok,Results line 133: collapsed to chance. This is a load-bearing claim -- if it lands materially above 0.51 the 'operationally infiltration detectors' sentence weakens.
+best-10 mean AUROC,confound.best10_mean_auroc,0.64,0.634851,-0.005148999999999959,0.015,ok,Results line 132.
+signatures meta-analyzable,meta_analysis.n_meta_analyzable,100.0,99.0,-1.0,0.0,MOVED,Results line 147: 32 of 100 meta-analyzable.
+pooled CIs excluding 0.5,meta_analysis.n_ci_excluding_0.5,32.0,32.0,0.0,1.0,ok,Results line 147. Tolerance 1 for boundary CIs.
 best pooled AUROC,meta_analysis.best_pooled_auroc,0.628,0.626776,-0.0012240000000000029,0.015,ok,"Results line 147: T-cell-inflamed profile, 95% CI 0.563-0.689."
-median I-squared (percent),meta_analysis.median_I2,15.0,16.129576,1.1295760000000001,6.0,ok,Results line 150: median I2 approx 15%.
+median I-squared (percent),meta_analysis.median_I2,15.0,15.178295,0.17829500000000031,6.0,ok,Results line 150: median I2 approx 15%.
 "LOCO ceiling, GEP axis",ceiling.loco_auroc.gep_axis,0.594,0.601816,0.007816000000000045,0.015,ok,Abstract and Figure 7A. The headline ceiling.
-"LOCO, ESTIMATE immune",ceiling.loco_auroc.estimate_immune,0.556,0.58731,0.03130999999999995,0.015,MOVED,Results line 158.
-"LOCO, full 102-signature panel",ceiling.loco_auroc.full_panel,0.553,0.570157,0.017156999999999978,0.015,MOVED,Abstract. Must come out BELOW the axis for the 'not improved by a trained panel' claim to hold.
-"LOCO, panel + infiltration",ceiling.loco_auroc.full_panel_plus_infiltration,0.55,0.581849,0.031848999999999905,0.015,MOVED,
-"LOCO, random gene-set panel",ceiling.loco_auroc.random_panel,0.441,0.489465,0.04846499999999998,0.025,MOVED,"Results line 159: collapses out of cohort. Random draw, so wider."
-in-cohort best-selected signature,ceiling.in_cohort_best_selected,0.76,0.763321,0.0033210000000000184,0.015,ok,
-within-cohort CV panel,ceiling.within_cohort_cv_panel,0.624,0.61843,-0.005569999999999964,0.02,ok,Figure 7B caption.
-optimism gap,ceiling.optimism_gap,0.17,0.161504,-0.008496000000000004,0.02,ok,"Abstract: 0.760 - 0.594. Derived, so it moves if either does."
+"LOCO, ESTIMATE immune",ceiling.loco_auroc.estimate_immune,0.556,0.587417,0.03141699999999992,0.015,MOVED,Results line 158.
+"LOCO, full 102-signature panel",ceiling.loco_auroc.full_panel,0.553,0.564025,0.011024999999999952,0.015,ok,Abstract. Must come out BELOW the axis for the 'not improved by a trained panel' claim to hold.
+"LOCO, panel + infiltration",ceiling.loco_auroc.full_panel_plus_infiltration,0.55,0.576395,0.026394999999999946,0.015,MOVED,
+"LOCO, random gene-set panel",ceiling.loco_auroc.random_panel,0.441,0.516999,0.07599899999999998,0.025,MOVED,"Results line 159: collapses out of cohort. Random draw, so wider."
+in-cohort best-selected signature,ceiling.in_cohort_best_selected,0.76,0.76447,0.004469999999999974,0.015,ok,
+within-cohort CV panel,ceiling.within_cohort_cv_panel,0.624,0.621894,-0.0021060000000000523,0.02,ok,Figure 7B caption.
+optimism gap,ceiling.optimism_gap,0.17,0.162654,-0.007346000000000019,0.02,ok,"Abstract: 0.760 - 0.594. Derived, so it moves if either does."

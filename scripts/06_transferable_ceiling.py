@@ -153,21 +153,50 @@ def loco_auroc(X: pd.DataFrame, y: pd.Series, C: float, seed: int = 0) -> tuple:
     return auroc(p, t), pooled
 
 
-def single_feature_loco(X: pd.DataFrame, y: pd.Series, col: str) -> tuple:
-    """A single score used directly as the predictor (no training).
+def single_feature_loco(X: pd.DataFrame, y: pd.Series, col: str,
+                        standardize: str = "within") -> tuple:
+    """A single score used directly as the predictor (no model is fitted).
 
-    Standardized within each held-out cohort, because a single score's
-    absolute scale is cohort-dependent; this is the fair version of "use
-    one axis" as a transferable predictor.
+    A single score needs no training, so leave-one-cohort-out is degenerate
+    for it and the only real choice is how to put cohorts on a common scale
+    before pooling predictions. Raw scores cannot be pooled: their location
+    and spread differ per cohort, so pooling them would measure cohort
+    offsets rather than discrimination.
+
+    ``standardize``:
+
+    * ``"within"``  -- z-score inside each cohort. Rank-preserving within a
+      cohort, so every per-cohort AUROC is untouched; but it does use the
+      held-out cohort's own mean and SD, which is information a deployed
+      single-gene test would not have for a lone patient.
+    * ``"train"``   -- z-score the held-out cohort using the mean and SD
+      pooled over the other cohorts, matching the standardization rule the
+      Methods state for the trained panel.
+
+    Both are reported. They differ only in how cohorts are aligned, so a
+    large gap between them is itself a finding about cross-cohort
+    comparability rather than about the signature.
     """
+    if standardize not in ("within", "train"):
+        raise ValueError(f"standardize must be 'within' or 'train', "
+                         f"got {standardize!r}")
+
     parts, truth, keys = [], [], []
     for cohort, grp in X.groupby(level="cohort"):
         s = grp[col]
-        if s.std(ddof=1) == 0:
+        if standardize == "within":
+            mu, sd = s.mean(), s.std(ddof=1)
+        else:
+            other = X.loc[X.index.get_level_values("cohort") != cohort, col]
+            mu, sd = other.mean(), other.std(ddof=1)
+        if not np.isfinite(sd) or sd == 0:
             continue
-        parts.append(((s - s.mean()) / s.std(ddof=1)).to_numpy())
+        parts.append(((s - mu) / sd).to_numpy())
         truth.append(y.loc[grp.index].to_numpy())
         keys.extend([cohort] * len(grp))
+
+    if not parts:
+        return float("nan"), pd.DataFrame(columns=["cohort", "pred", "y"])
 
     p = np.concatenate(parts)
     t = np.concatenate(truth)
@@ -222,14 +251,26 @@ def main() -> None:
     a_gep, pooled_gep = single_feature_loco(X, y, ref)
     lo, hi = cluster_bootstrap(pooled_gep, n_boot, seed)
     rows.append({"predictor": "gep_axis", "n_features": 1,
-                 "loco_auroc": a_gep, "ci_low": lo, "ci_high": hi})
+                 "loco_auroc": a_gep, "ci_low": lo, "ci_high": hi,
+                 "standardization": "within_cohort"})
+
+    # Same axis, standardized on the training cohorts instead -- the rule the
+    # Methods state for the panel. Reported alongside rather than instead, so
+    # the ceiling does not silently depend on which convention was chosen.
+    a_gep_tr, pooled_gep_tr = single_feature_loco(X, y, ref,
+                                                 standardize="train")
+    lo_tr, hi_tr = cluster_bootstrap(pooled_gep_tr, n_boot, seed)
+    rows.append({"predictor": "gep_axis_train_standardized", "n_features": 1,
+                 "loco_auroc": a_gep_tr, "ci_low": lo_tr, "ci_high": hi_tr,
+                 "standardization": "training_cohorts"})
 
     Xi = X.copy()
     Xi["__infiltration"] = inf.reindex(X.index)
     if Xi["__infiltration"].notna().all():
         a_est, pooled_est = single_feature_loco(Xi, y, "__infiltration")
         rows.append({"predictor": "estimate_immune", "n_features": 1,
-                     "loco_auroc": a_est, "ci_low": np.nan, "ci_high": np.nan})
+                     "loco_auroc": a_est, "ci_low": np.nan, "ci_high": np.nan,
+                     "standardization": "within_cohort"})
 
     a_panel, _ = loco_auroc(X, y, C)
     rows.append({"predictor": "full_panel", "n_features": X.shape[1],
@@ -242,7 +283,13 @@ def main() -> None:
                      "ci_low": np.nan, "ci_high": np.nan})
 
     # random panel: same number of features, drawn as random gene sets
-    rand = _random_panel(X.shape[1], args.method, seed, cfg)
+    # The Methods specify "a size-matched random 102-gene-set panel", i.e.
+    # matched to the LIBRARY size, not to however many signatures survived
+    # the cross-cohort intersection. Using X.shape[1] silently shrinks the
+    # random panel (98 here) and makes it a weaker comparator than the one
+    # the paper describes.
+    n_library = len(pd.read_csv(ROOT / "signatures" / "signature_provenance.csv"))
+    rand = _random_panel(n_library, args.method, seed, cfg)
     if rand is not None:
         a_rand, _ = loco_auroc(rand.loc[X.index], y, C)
         rows.append({"predictor": "random_panel", "n_features": rand.shape[1],
@@ -316,23 +363,42 @@ def _random_panel(n_sets: int, method: str, seed: int, cfg: dict):
 
     sig_sizes = pd.read_csv(ROOT / "signatures" / "signature_provenance.csv")
     sizes = sig_sizes.n_genes.to_numpy()
+
+    cohorts = passing_cohorts()
+    loaded = [(name, load_cohort(name, config=cfg)) for name in cohorts]
+
+    # The panel's gene sets must be THE SAME in every cohort. Drawing a fresh
+    # set per cohort would make column `random_007` a different gene set in
+    # each one, so a model trained on the other cohorts would be applied to
+    # features that have nothing to do with the ones it was fitted on -- that
+    # measures nothing, and it drives the held-out AUROC toward 0.5 for a
+    # reason unrelated to the comparison being made. Sets are therefore drawn
+    # once, from the intersection of the cohorts' expressed universes, so
+    # every column means the same thing across folds.
+    shared_pool = set(loaded[0][1].universe)
+    for _, c in loaded[1:]:
+        shared_pool &= set(c.universe)
+    pool = np.asarray(sorted(shared_pool), dtype=object)
+    if len(pool) < 100:
+        print(f"note: only {len(pool)} genes are expressed in every cohort; "
+              f"the random panel is drawn from that shared universe.")
+
     rng = np.random.default_rng(seed)
+    draws = []
+    for j in range(n_sets):
+        size = int(min(sizes[j % len(sizes)], len(pool) - 1))
+        draws.append(rng.choice(pool, size=max(size, 2), replace=False))
 
     blocks = []
-    for cohort in passing_cohorts():
-        c = load_cohort(cohort, config=cfg)
+    for name, c in loaded:
         y = c.labels("primary", cfg)
         idx = [s for s in y.index if s in c.expr.columns]
         if len(idx) < 10:
             continue
-        pool = np.asarray(c.universe, dtype=object)
-        cols = {}
-        for j in range(n_sets):
-            size = int(min(sizes[j % len(sizes)], len(pool) - 1))
-            genes = rng.choice(pool, size=max(size, 2), replace=False)
-            cols[f"random_{j:03d}"] = mean_z_score(c.expr, genes, 1).loc[idx]
+        cols = {f"random_{j:03d}": mean_z_score(c.expr, g, 1).loc[idx]
+                for j, g in enumerate(draws)}
         B = pd.DataFrame(cols)
-        B.index = pd.MultiIndex.from_product([[cohort], idx],
+        B.index = pd.MultiIndex.from_product([[name], idx],
                                              names=["cohort", "sample_id"])
         blocks.append(B)
 

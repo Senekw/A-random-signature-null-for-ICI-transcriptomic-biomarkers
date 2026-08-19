@@ -14,6 +14,15 @@ inclusion_gate:
 
 # ---- Expression harmonization ----
 expression:
+  # Map both the expression index and signature genes onto current NCBI
+  # official symbols before joining them. Load-bearing: the cohorts were
+  # processed against different GENCODE vintages (Van_Allen/Miao1/Braun/Puch
+  # carry pre-2020 histone symbols, the rest carry current ones), so without
+  # this a gene set written with retired symbols matches in some cohorts and
+  # vanishes in others -- making a signature's realized size, its
+  # size-matched null and its meta-analysis weight depend on annotation
+  # vintage rather than biology. See src/icinull/symbols.py.
+  harmonize_symbols: true
   assay: expr_gene_tpm          # ORCESTRA MAE experiment name; log2-TPM
   symbol_column: gene_name      # rowData column carrying HUGO symbols
   duplicate_symbol_rule: max_mean_expression
@@ -37,7 +46,22 @@ scoring:
   primary: mean_z               # mean of per-gene z-scores within cohort
   sensitivity: ssgsea
   ssgsea_alpha: 0.25
-  min_genes_covered: 2          # signature must map >=2 genes to be scored
+  # A signature is scored if at least this many of its genes are measured in
+  # the cohort. MUST be 1: three of the 12 canonical predictors named in the
+  # Methods (PD-L1/CD274, PD-1/PDCD1, CTLA-4) are single-gene markers, so a
+  # floor of 2 silently deletes them from every cohort -- 45 tests, and it
+  # biases the canonical null-beating rate by dropping a quarter of the
+  # canonical set.
+  #
+  # This value is set from the Methods' explicit inclusion of single-gene
+  # markers, NOT from a coverage statistic. For the record, the Methods also
+  # state "median gene coverage of signatures in cohorts was 92%", and this
+  # pipeline does not reproduce that figure: the median here is 100% (most
+  # signatures are fully measured in most cohorts) and it is the MEAN that
+  # lands near 92% (91.8% over tests with >=1 gene covered). Those are
+  # different statistics and the discrepancy is unresolved -- see
+  # docs/reproduction_report.md. Do not treat the mean as corroboration.
+  min_genes_covered: 1
 
 # ---- Per-signature-per-cohort evaluability ----
 evaluability:

@@ -218,6 +218,56 @@ def main() -> None:
     sigs = {**canon, **iobr}
     prov = pd.DataFrame(canon_prov + iobr_prov)
 
+    # ---- map signature genes onto current NCBI official symbols ------------
+    # The upstream gene sets were curated years apart and many carry retired
+    # symbols (INDO for IDO1, BLR1 for CXCR5, HIST1H2AG for H2AC11, ...).
+    # Unmapped genes are silently dropped at scoring time, which shrinks the
+    # gene set, shrinks the size-matched null with it, and does so unevenly
+    # across cohorts of different annotation vintages. Both sides of the join
+    # are therefore harmonized; see icinull.symbols.
+    sys.path.insert(0, str(ROOT / "src"))
+    from icinull.symbols import harmonize_gene_list, load_symbol_map
+
+    official, alias = load_symbol_map()
+    all_renames: dict = {}
+    unmapped_rows = []
+    for name, spec in sigs.items():
+        genes, renamed = harmonize_gene_list(spec["genes"], official, alias)
+        spec["genes"] = genes
+        if renamed:
+            spec["symbols_updated"] = renamed
+            all_renames.update(renamed)
+        still = [g for g in genes if g not in official]
+        if still:
+            unmapped_rows.append({"signature": name,
+                                  "n_unmapped": len(still),
+                                  "unmapped": ";".join(sorted(still))})
+
+    prov["n_genes"] = prov.signature.map(lambda s: len(sigs[s]["genes"]))
+
+    if all_renames:
+        print(f"\nsymbol harmonization: {len(all_renames)} retired symbol(s) "
+              f"updated to current NCBI official symbols")
+        for old, new in sorted(all_renames.items())[:12]:
+            print(f"  {old:>14} -> {new}")
+        if len(all_renames) > 12:
+            print(f"  ... and {len(all_renames) - 12} more "
+                  f"(full list in signature_provenance.csv)")
+        pd.DataFrame(sorted(all_renames.items()),
+                     columns=["retired_symbol", "current_symbol"]
+                     ).to_csv(OUT_DIR / "symbol_updates.csv", index=False)
+
+    if unmapped_rows:
+        u = pd.DataFrame(unmapped_rows)
+        u.to_csv(OUT_DIR / "unmapped_genes.csv", index=False)
+        tot = int(u.n_unmapped.sum())
+        print(f"\n{tot} gene identifier(s) across {len(u)} signature(s) are "
+              f"not current symbols and could not be mapped unambiguously "
+              f"(microarray probe IDs, composite entries like 'GCLC/GCLM', "
+              f"ambiguous aliases like IL8RA -> CXCR1|CXCR2, withdrawn "
+              f"records). They are left as-is rather than guessed, so they "
+              f"simply do not match; see signatures/unmapped_genes.csv.")
+
     (OUT_DIR / "signatures.json").write_text(json.dumps(sigs, indent=2))
     prov.to_csv(OUT_DIR / "signature_provenance.csv", index=False)
 
@@ -228,6 +278,25 @@ def main() -> None:
     print(f"  direction -1 (resistance/stroma): {int((prov.direction < 0).sum())}")
     print(f"  -> {OUT_DIR / 'signatures.json'}")
     print(f"  -> {OUT_DIR / 'signature_provenance.csv'}")
+
+    # Two signatures with identical membership are one signature counted
+    # twice: they produce identical scores, identical AUROCs and identical
+    # null p-values, which double-weights that gene set in every aggregate
+    # and in the PCA. Report them rather than silently carrying them.
+    by_genes: dict = {}
+    for name, spec in sigs.items():
+        by_genes.setdefault(frozenset(spec["genes"]), []).append(name)
+    dups = {k: v for k, v in by_genes.items() if len(v) > 1}
+    if dups:
+        print(f"\nWARNING: {len(dups)} gene set(s) appear under more than one "
+              f"signature name. Identical membership means identical scores, "
+              f"so these are double-counted in every aggregate:")
+        for genes, names in dups.items():
+            print(f"  {' == '.join(names)}  ({len(genes)} genes)")
+        print("  Resolve by giving each its published membership, or by "
+              "dropping the duplicate from the roster and adjusting the "
+              "library size. Do not leave this unaddressed: it inflates the "
+              "apparent number of independent signatures.")
 
     if len(sigs) != 102:
         print(f"WARNING: expected 102 signatures, built {len(sigs)}. "

@@ -58,11 +58,16 @@
   pmid: 28629479
   reference: "Prabhakaran S, et al. Breast Cancer Res 2017;19:71."
   note: >
-    Prabhakaran et al. evaluate the 12-chemokine gene-expression score;
-    membership is the same 12-chemokine list curated by SignatureSets.
-    Retained as a separately-named library entry because it is cited as a
-    distinct published TLS predictor, and its duplication with
-    Chemokine12_Messina is itself informative for the collapse analysis.
+    DELIBERATELY IDENTICAL to Chemokine12_Messina. Prabhakaran et al. did
+    not derive a new gene set: they re-evaluated the same 12-chemokine
+    score (CCL2/3/4/5/8/18/19/21, CXCL9/10/11/13) in invasive breast
+    cancer. Both entries are kept because the manuscript cites both
+    publications as distinct published predictors, but they are ONE gene
+    set -- identical scores, identical AUROCs, identical null p-values. The
+    library therefore holds 102 named signatures over 101 distinct gene
+    sets, and any aggregate over signatures double-weights this set.
+    scripts/01_build_signatures.py reports the duplication on every build
+    so it can never become an unnoticed assumption.
 
 - name: Roh_immune
   label: Roh immune activation

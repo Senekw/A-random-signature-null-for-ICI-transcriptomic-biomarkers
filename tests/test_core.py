@@ -290,3 +290,120 @@ def test_expressed_universe_excludes_floor_only_genes():
     assert "G0000" not in universe
     assert "G0001" not in universe
     assert "G0050" in universe
+
+
+# --------------------------------------------------------------------------
+# the null's vectorized fast path must equal the naive reference
+# --------------------------------------------------------------------------
+
+def _reference_null_draws(expr, y, genes, universe, n_draws, seed,
+                          direction=1):
+    """The obvious, slow implementation: re-standardize per draw."""
+    rng = np.random.default_rng(seed)
+    pool = np.asarray([g for g in universe if g in expr.index], dtype=object)
+    covered = [g for g in dict.fromkeys(genes) if g in expr.index]
+    out = np.empty(n_draws, dtype=float)
+    for i in range(n_draws):
+        pick = rng.choice(pool, size=len(covered), replace=False)
+        out[i] = auroc(mean_z_score(expr, pick, direction), y.to_numpy())
+    return out
+
+
+def test_null_fast_path_matches_reference():
+    """random_null_test precomputes the z-matrix once instead of per draw.
+
+    That is only a legitimate optimization if it changes nothing, so this
+    pins it against the naive loop: same seed, same draws, bit-for-bit.
+    """
+    expr, y = make_expr(n_genes=600, n_samples=50, seed=4)
+    genes = list(expr.index[:15])
+    universe = list(expr.index)
+
+    got = random_null_test(expr, y, genes, universe=universe,
+                           n_draws=200, seed=99)
+    ref = _reference_null_draws(expr, y, genes, universe, 200, 99)
+
+    assert got.null_mean == pytest.approx(float(ref.mean()), abs=1e-12)
+    assert got.null_sd == pytest.approx(float(ref.std(ddof=1)), abs=1e-12)
+    assert got.null_q95 == pytest.approx(float(np.quantile(ref, 0.95)),
+                                         abs=1e-12)
+
+
+def test_null_fast_path_handles_zero_variance_genes():
+    """A gene with no variance has an undefined z-score; it must not make
+    the whole draw NaN."""
+    expr, y = make_expr(n_genes=300, n_samples=40, seed=5)
+    expr.iloc[0] = 7.0                      # constant across samples
+    r = random_null_test(expr, y, list(expr.index[:10]),
+                         universe=list(expr.index), n_draws=50, seed=1)
+    assert np.isfinite(r.null_mean)
+    assert r.n_draws == 50
+
+
+def test_null_direction_flips_the_observed_auroc():
+    expr, y = make_expr(n_genes=400, n_samples=60, seed=6,
+                        signal_genes=[f"G{i:04d}" for i in range(10)],
+                        effect=1.5)
+    genes = [f"G{i:04d}" for i in range(10)]
+    up = random_null_test(expr, y, genes, direction=1, n_draws=30, seed=2)
+    dn = random_null_test(expr, y, genes, direction=-1, n_draws=30, seed=2)
+    assert up.observed_auroc == pytest.approx(1.0 - dn.observed_auroc, abs=1e-12)
+
+
+# --------------------------------------------------------------------------
+# ssGSEA against the published definition
+# --------------------------------------------------------------------------
+
+def _ssgsea_from_the_paper(expr, genes, alpha=0.25):
+    """Barbie et al. (Nature 2009) ssGSEA, transcribed from the definition.
+
+    Independent of the optimized implementation in icinull.scoring: rank
+    genes within each sample, walk the descending list accumulating
+    |rank|**alpha for in-set genes (normalized to sum 1) against a uniform
+    step for out-of-set genes, and integrate the difference of the two CDFs.
+    """
+    X = expr.to_numpy(dtype=float)
+    in_set = np.array([g in set(genes) for g in expr.index])
+    n = X.shape[0]
+    out = []
+    for j in range(X.shape[1]):
+        rank = pd.Series(X[:, j]).rank(method="average").to_numpy()
+        order = np.argsort(-rank, kind="stable")
+        w = np.abs(rank[order]) ** alpha
+        hit = in_set[order]
+        hw = np.where(hit, w, 0.0)
+        if hw.sum() == 0:
+            out.append(np.nan)
+            continue
+        cdf_in = np.cumsum(hw) / hw.sum()
+        cdf_out = np.cumsum(~hit) / (n - hit.sum())
+        out.append(float(np.sum(cdf_in - cdf_out) / n))
+    return pd.Series(out, index=expr.columns)
+
+
+@pytest.mark.parametrize("alpha", [0.25, 0.5, 1.0])
+def test_ssgsea_matches_the_published_definition(alpha):
+    expr, _ = make_expr(n_genes=500, n_samples=25, seed=8)
+    genes = list(expr.index[:20])
+    got = ssgsea_score(expr, genes, 1, alpha=alpha)
+    ref = _ssgsea_from_the_paper(expr, genes, alpha=alpha)
+    assert np.abs(got.to_numpy() - ref.to_numpy()).max() < 1e-12
+
+
+def test_ssgsea_alpha_is_actually_used():
+    """A different exponent must give a different answer -- guards against
+    the weight silently defaulting."""
+    expr, _ = make_expr(n_genes=400, n_samples=20, seed=9)
+    genes = list(expr.index[:15])
+    a = ssgsea_score(expr, genes, 1, alpha=0.25)
+    b = ssgsea_score(expr, genes, 1, alpha=1.0)
+    assert not np.allclose(a.to_numpy(), b.to_numpy())
+
+
+def test_ssgsea_precomputed_ranks_match_internal_ranking():
+    expr, _ = make_expr(n_genes=300, n_samples=15, seed=10)
+    genes = list(expr.index[:12])
+    from icinull.scoring import rank_matrix
+    a = ssgsea_score(expr, genes, 1)
+    b = ssgsea_score(expr, genes, 1, ranks=rank_matrix(expr))
+    assert np.abs(a.to_numpy() - b.to_numpy()).max() < 1e-12

@@ -114,10 +114,27 @@ def random_null_test(
     pool_arr = np.asarray(pool, dtype=object)
     yv = y.to_numpy()
 
+    # Per-gene z-scores are a property of the cohort, not of which genes a
+    # draw happens to pick, so standardize once instead of once per draw.
+    # mean_z_score(expr, pick) is exactly the column mean of these rows, so
+    # this is an identical computation -- verified in
+    # tests/test_core.py::test_null_fast_path_matches_reference -- and it is
+    # what makes 1000 draws x 102 signatures x 15 cohorts tractable.
+    mu = expr.mean(axis=1).to_numpy()[:, None]
+    sd = expr.std(axis=1, ddof=1).to_numpy()[:, None]
+    with np.errstate(invalid="ignore", divide="ignore"):
+        Z = (expr.to_numpy(dtype=float) - mu) / sd
+    Z[~np.isfinite(Z)] = np.nan            # zero-variance genes carry no signal
+
+    row_of = {g: i for i, g in enumerate(expr.index)}
+    pool_rows = np.fromiter((row_of[g] for g in pool_arr), dtype=np.intp,
+                            count=len(pool_arr))
+
     draws = np.empty(n_draws, dtype=float)
     for i in range(n_draws):
-        pick = rng.choice(pool_arr, size=size, replace=False)
-        draws[i] = auroc(mean_z_score(expr, pick, direction), yv)
+        rows = rng.choice(pool_rows, size=size, replace=False)
+        s = np.nanmean(Z[rows, :], axis=0) * direction
+        draws[i] = auroc(s, yv)
 
     draws = draws[np.isfinite(draws)]
     n_eff = draws.size
